@@ -1,0 +1,29 @@
+@mixin arrow($color) {
+  border: solid $color;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 8px;
+}
+@mixin filledArrow($color) {
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid $color;
+}
+@mixin arrowLeft($color) {
+  @include arrow($color);
+  transform: rotate(135deg);
+}
+
+@mixin arrowRight($color) {
+  @include arrow($color);
+  transform: rotate(-45deg);
+}
+@mixin arrowDown($color) {
+  @include arrow($color);
+  transform: rotate(45deg);
+}
+@mixin filledArrowLeft($color) {
+  @include filledArrow($color);
+}

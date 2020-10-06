@@ -1,0 +1,45 @@
+@import '../../css/variables.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.h3 {
+  text-transform: uppercase;
+}
+.textWrapper {
+  text-align: justify;
+}
+.paragraph {
+  font-size: $font-size-m;
+  line-height: $line-height-paragraph;
+}
+.imageWrapper {
+  position: relative;
+  height: 80%;
+  flex-basis: 430px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-left: 120px;
+}
+.portrait {
+  position: absolute;
+  background: url('/img/blue.JPG') no-repeat top center;
+  background-size: cover;
+  height: 400px;
+  width: 360px;
+  left: 0;
+  bottom: 0;
+  border: solid white 12px;
+}
+.background {
+  position: absolute;
+  background: url('/img/white-bridge.JPG') no-repeat top center;
+  background-size: cover;
+  height: 400px;
+  width: 360px;
+  top: 0;
+  right: 0;
+}

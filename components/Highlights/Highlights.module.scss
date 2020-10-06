@@ -1,0 +1,23 @@
+@import '../../css/variables.scss';
+
+.heading {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: $gutter-desktop;
+}
+.highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.icon {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  fill: $sky-darker;
+  path {
+    stroke: 5px;
+  }
+}

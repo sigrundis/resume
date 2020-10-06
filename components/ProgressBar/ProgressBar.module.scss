@@ -1,0 +1,35 @@
+@import '../../css/keyframes.scss';
+@import '../../css/variables.scss';
+
+.container {
+  margin-top: 10px;
+}
+.progressContainer {
+  display: flex;
+  align-items: center;
+  height: 2px;
+  width: 100%;
+  background-color: $border-color;
+  border-radius: 50px;
+}
+.progress {
+  height: 6px;
+  background-color: $sky-darker;
+  border-radius: inherit;
+  text-align: right;
+  transition: width 1.2s ease-in-out;
+}
+.advancedProgress {
+  background-color: $sky-dark;
+}
+.intermediateProgress {
+  background-color: $sky-darker;
+}
+.fundamentalProgress {
+  background-color: $sky-lighter;
+}
+
+.label {
+  padding: 10px 0;
+  white-space: nowrap;
+}

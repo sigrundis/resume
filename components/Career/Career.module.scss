@@ -1,0 +1,61 @@
+@import '../../css/mixin.scss';
+@import '../../css/keyframes.scss';
+@import '../../css/variables.scss';
+
+.flexWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.item {
+  cursor: grab;
+}
+.image {
+  height: 80%;
+  width: 50%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.fadeInAnimation {
+  animation: fadein 0.8s;
+}
+.rightSide {
+  flex-grow: 1;
+  position: relative;
+  padding-left: 60px;
+  box-sizing: border-box;
+  width: 60%;
+}
+.passionTitle {
+  font-weight: $font-weight-light;
+  padding: 20px 0;
+}
+.h3 {
+  text-transform: uppercase;
+}
+.arrows {
+  display: flex;
+}
+.arrow {
+  cursor: pointer;
+}
+.arrowLeft {
+  @include arrowLeft($sky);
+}
+.arrowRight {
+  @include arrowRight($sky);
+  margin-left: 10px;
+}
+.arrowDisabled {
+  border-color: $border-color;
+  cursor: not-allowed;
+}
+.paragraph {
+  font-size: $font-size-m;
+  line-height: 30px;
+  text-align: justify;
+  margin-top: 0;
+}
