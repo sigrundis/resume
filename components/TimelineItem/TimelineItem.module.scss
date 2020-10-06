@@ -1,0 +1,75 @@
+@import '../../css/variables.scss';
+@import '../../css/mixin.scss';
+@import '../../css/keyframes.scss';
+
+.container {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  width: 90%;
+}
+.dividor {
+  position: absolute;
+  width: 1px;
+  top: 10px;
+  bottom: -10px;
+  right: 50%;
+  background-color: $neutral;
+  opacity: 0;
+  &::after {
+    position: absolute;
+    content: '';
+    height: 8px;
+    width: 8px;
+    background-color: $sky-darker;
+    border-radius: 50%;
+    left: -4px;
+    top: 0;
+  }
+}
+.container {
+  &:last-child {
+    .dividor {
+      bottom: 10px;
+    }
+  }
+}
+.animateUp {
+  animation: slideUp 1s ease forwards;
+}
+.animateFromLeft {
+  animation: slideFromLeft 1s ease forwards;
+}
+.animateFromRight {
+  animation: slideFromRight 1s ease forwards;
+}
+.rightSide {
+  position: relative;
+  width: 50%;
+  padding: 0 30px 30px 30px;
+  box-sizing: border-box;
+  opacity: 0;
+}
+.content {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  &::before {
+    position: absolute;
+    content: '';
+    @include filledArrowLeft($white);
+    left: -10px;
+    top: 10px;
+  }
+}
+.year {
+  width: 50%;
+  text-align: right;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  font-size: 18px;
+  color: $sky-dark;
+  opacity: 0;
+}

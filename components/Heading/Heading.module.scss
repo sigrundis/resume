@@ -1,0 +1,91 @@
+@import '../../css/variables.scss';
+
+.container {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  padding: 160px;
+}
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: url('/img/code2.jpg') no-repeat bottom right;
+  background-size: cover;
+  filter: blur(4px);
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+  filter: blur(0);
+}
+.flexWrapper {
+  flex: auto;
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1400px;
+}
+.content {
+  z-index: 1;
+  padding-right: 80px;
+  box-sizing: border-box;
+}
+.h1 {
+  padding: $gutter-desktop 0;
+  color: $warm-grey-light;
+}
+.h2 {
+  position: relative;
+  font-weight: $font-weight-light;
+  padding-top: 40px;
+  color: $warm-grey-light;
+  &::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 200px;
+    background-color: $sky-darker;
+    top: 0;
+    left: 0;
+  }
+}
+.h3 {
+  padding: 0;
+  color: $sky-darker;
+}
+.imageWrapper {
+  position: relative;
+  height: 520px;
+  flex-basis: 430px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.box {
+  position: absolute;
+  width: 360px;
+  height: 460px;
+  top: 0;
+  right: 0;
+  border: solid 12px $sky;
+  // background-color: rgba(174, 195, 243, 0.5);
+}
+.image {
+  position: absolute;
+  background: url('/img/headerimage.jpeg') no-repeat center center;
+  background-size: cover;
+  width: 350px;
+  height: 450px;
+  bottom: 0;
+  left: 0;
+  border: solid 12px $warm-grey-light;
+  background-color: rgba(40, 71, 143, 0.3);
+}

@@ -1,0 +1,23 @@
+@import '../../css/variables.scss';
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  padding: 50px 0;
+  background-color: $neutral;
+}
+.whiteContainer {
+  background-color: $white;
+}
+.noPaddingContainer {
+  padding-bottom: 0;
+}
+.h2 {
+  padding-top: 0;
+}
+.h3 {
+  font-weight: $font-weight-light;
+  padding-bottom: 0;
+}

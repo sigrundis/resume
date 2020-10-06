@@ -1,0 +1,102 @@
+@import '../../css/variables.scss';
+@import '../../css/mixin.scss';
+
+.container {
+  position: relative;
+  width: 90%;
+  display: flex;
+  box-sizing: border-box;
+  &:first-child {
+    &::before {
+      position: absolute;
+      content: '';
+      height: 14px;
+      width: 2px;
+      background-color: $white;
+      left: 50%;
+      top: 0px;
+      z-index: 1;
+    }
+  }
+  &:last-child {
+    &::before {
+      position: absolute;
+      content: '';
+      height: 14px;
+      width: 2px;
+      background-color: $white;
+      left: 50%;
+      bottom: 0px;
+      z-index: 1;
+    }
+  }
+}
+.rightSide {
+  position: relative;
+  border-left: solid $base-border-width $neutral;
+  width: 50%;
+  padding: 0 30px 30px 30px;
+  box-sizing: border-box;
+  &::before {
+    position: absolute;
+    content: '';
+    height: 8px;
+    width: 8px;
+    background-color: $sky-darker;
+    border-radius: 50%;
+    left: -5px;
+    top: 14px;
+  }
+}
+.content {
+  position: relative;
+  width: 100%;
+  background-color: white;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  &::before {
+    position: absolute;
+    content: '';
+    @include filledArrowLeft($white);
+    left: -10px;
+    top: 10px;
+  }
+}
+.contentHeader {
+  position: relative;
+  padding: 15px 15px 50px 15px;
+}
+.subject {
+  font-size: 18px;
+  font-weight: $font-weight-medium;
+  margin-bottom: 15px;
+}
+.school {
+  font-style: italic;
+}
+.courses {
+  margin: 0;
+  padding: 15px 0 15px 40px;
+  border-top: dotted $base-border-width $border-color;
+}
+.course {
+  font-weight: $font-weight-light;
+  padding: 5px 0;
+}
+.coursesTrigger {
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  color: $sky-dark;
+  cursor: pointer;
+}
+.arrow {
+  @include arrowDown($sky-darker);
+  padding: 4px;
+  margin: 0 0 3px 10px;
+  transition: 0.2s;
+}
+.arrowOpen {
+  margin-bottom: 0;
+  transform: rotate(-135deg);
+}

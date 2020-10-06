@@ -1,0 +1,42 @@
+@import '../../css/variables.scss';
+
+.heading {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: $gutter-desktop;
+}
+.subtitle {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+.bullet {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.advancedBullet {
+  background-color: $sky-dark;
+}
+.intermediateBullet {
+  background-color: $sky-darker;
+}
+.fundamentalBullet {
+  background-color: $sky-lighter;
+}
+.h3 {
+  padding: 0;
+  white-space: nowrap;
+  font-weight: $font-weight-light;
+}
+.flexWrapper {
+  display: flex;
+}
+.progressBars {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0 140px;
+}
