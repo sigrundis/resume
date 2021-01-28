@@ -9,6 +9,7 @@
 }
 .bottom {
   display: flex;
+  flex-wrap: wrap;
   border-top: $base-border;
   padding: $gutter-desktop 0;
 }
@@ -19,5 +20,15 @@
   margin-right: 20px;
 }
 .copyright {
-  margin-left: auto;
+  width: 100%;
+  margin-top: 20px;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: $breakpoint-ipad) {
+  .copyright {
+    width: auto;
+    margin-top: 0;
+    margin-left: auto;
+  }
 }
