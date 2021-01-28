@@ -11,12 +11,12 @@
   padding: 40px;
 }
 .backgroundImage {
-  pointer-events: none;
   position: absolute;
-  height: 100%;
   top: 0;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   filter: blur(4px);
-  z-index: -1;
 }
 .overlay {
   position: absolute;
@@ -135,16 +135,19 @@
   }
 }
 @media screen and (min-width: $breakpoint-laptop) {
+  .content {
+    padding-right: 60px;
+    min-width: 610px;
+  }
+}
+@media screen and (min-width: $breakpoint-desktop) {
   .container {
     padding: 160px;
   }
   .flexWrapper {
     max-width: 1400px;
   }
-  .content {
-    padding-right: 80px;
-    min-width: 600px;
-  }
+
   .imageWrapper {
     height: 520px;
     flex-basis: 430px;
