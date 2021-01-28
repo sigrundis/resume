@@ -47,5 +47,5 @@ export const passionImages = [
   '/img/map.jpg',
   '/img/dohop.jpg',
   '/img/sdu.jpg',
-  '/img/running.JPG',
+  '/img/running.jpg',
 ];
