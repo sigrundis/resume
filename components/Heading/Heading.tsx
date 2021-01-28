@@ -25,7 +25,7 @@ const {
 
 const Heading = () => {
   const [animateWorkTitle, setAnimateWorkTitle] = useState<boolean>(false);
-  const { loaded: backgroundLoaded } = useProgressiveImg(
+  const { src, loaded: backgroundLoaded } = useProgressiveImg(
     '/img/code2_tiny.jpg',
     '/img/code2.jpg'
   );
@@ -34,20 +34,9 @@ const Heading = () => {
     '/img/headerimage.jpeg'
   );
 
-  useEffect(() => {
-    setTimeout(() => {
-      setAnimateWorkTitle(true);
-    }, 800);
-  }, []);
-
   return (
     <div className={container}>
-      <div
-        className={classNames(backgroundImage, {
-          [backgroundImageTiny]: !backgroundLoaded,
-          [backgroundImageLoaded]: backgroundLoaded,
-        })}
-      />
+      <img src={src} className={backgroundImage} />
       <div className={overlay} />
       <div className={flexWrapper}>
         <div
@@ -57,7 +46,7 @@ const Heading = () => {
           <h1 className={h1}>Sigrún Dís Hauksdóttir</h1>
           <h2
             className={classNames(h2, {
-              [animateWorkTitleStyle]: animateWorkTitle,
+              [animateWorkTitleStyle]: backgroundLoaded && portraitLoaded,
             })}
           >
             Software Developer

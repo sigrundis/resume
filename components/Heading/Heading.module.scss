@@ -3,6 +3,7 @@
 
 .container {
   position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -10,21 +11,12 @@
   padding: 40px;
 }
 .backgroundImage {
+  pointer-events: none;
   position: absolute;
+  height: 100%;
   top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-.backgroundImageTiny {
-  background: url('/img/code2_tiny.jpg') no-repeat bottom right;
-  background-size: cover;
-  filter: blur(10px);
-}
-.backgroundImageLoaded {
-  background: url('/img/code2.jpg') no-repeat bottom right;
-  background-size: cover;
-  filter: blur(3px);
+  filter: blur(4px);
+  z-index: -1;
 }
 .overlay {
   position: absolute;
@@ -80,6 +72,7 @@
   animation: typewriter 2.5s steps(44) 1s 1 normal both,
     blinkTextCursor 600ms steps(44) 8 normal;
   animation-fill-mode: forwards;
+  animation-delay: 0.8s;
 }
 .h3 {
   display: inline-block;
