@@ -44,7 +44,7 @@ export const passionList: IPassion[] = [
 ];
 
 export const passionImages = [
-  '/img/map.JPG',
+  '/img/map.jpg',
   '/img/dohop.jpg',
   '/img/sdu.jpg',
   '/img/running.JPG',
