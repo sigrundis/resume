@@ -5,23 +5,28 @@ import styles from './Section.module.scss';
 const {
   container,
   whiteContainer,
+  darkContainer,
   tallContainer,
   noPaddingContainer,
   inner,
 } = styles;
 interface ISectionProps {
+  id?: string;
   children: any;
   white?: boolean;
+  dark?: boolean;
   tall?: boolean;
   noPadding?: boolean;
 }
 
 const Section = forwardRef(
-  ({ children, white, tall, noPadding }: ISectionProps, ref: any) => {
+  ({ id, children, white, dark, tall, noPadding }: ISectionProps, ref: any) => {
     return (
       <div
+        id={id}
         className={classNames(container, {
           [whiteContainer]: white,
+          [darkContainer]: dark,
           [tallContainer]: tall,
           [noPaddingContainer]: noPadding,
         })}

@@ -17,6 +17,10 @@ const Personal = () => {
   return (
     <Section>
       <div className={container}>
+        <div className={imageWrapper}>
+          <div className={background}></div>
+          <div className={portrait}></div>
+        </div>
         <div className={textWrapper}>
           <h3 className={h3}>On the personal notes</h3>
           <Separator />
@@ -38,10 +42,6 @@ const Personal = () => {
             something for social life I am often quick to volunteer because I
             find it really entertaining.
           </p>
-        </div>
-        <div className={imageWrapper}>
-          <div className={background}></div>
-          <div className={portrait}></div>
         </div>
       </div>
     </Section>

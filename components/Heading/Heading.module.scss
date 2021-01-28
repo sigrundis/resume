@@ -1,10 +1,13 @@
 @import '../../css/variables.scss';
+@import '../../css/keyframes.scss';
 
 .container {
+  position: relative;
   display: flex;
   justify-content: center;
-  position: relative;
-  padding: 160px;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 40px;
 }
 .backgroundImage {
   position: absolute;
@@ -12,9 +15,16 @@
   bottom: 0;
   right: 0;
   left: 0;
+}
+.backgroundImageTiny {
+  background: url('/img/code2_tiny.jpg') no-repeat bottom right;
+  background-size: cover;
+  filter: blur(10px);
+}
+.backgroundImageLoaded {
   background: url('/img/code2.jpg') no-repeat bottom right;
   background-size: cover;
-  filter: blur(4px);
+  filter: blur(3px);
 }
 .overlay {
   position: absolute;
@@ -26,66 +36,133 @@
   filter: blur(0);
 }
 .flexWrapper {
-  flex: auto;
   display: flex;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 1400px;
+  flex-direction: column;
 }
 .content {
+  opacity: 0;
   z-index: 1;
-  padding-right: 80px;
+  margin-bottom: $gutter-mobile;
   box-sizing: border-box;
 }
-.h1 {
-  padding: $gutter-desktop 0;
-  color: $warm-grey-light;
+.animateContent {
+  animation: slideUpFar 1s, fadeIn 1s;
+  animation-fill-mode: forwards;
 }
-.h2 {
+.h1 {
   position: relative;
-  font-weight: $font-weight-light;
-  padding-top: 40px;
+  padding: $gutter-mobile 0;
   color: $warm-grey-light;
-  &::before {
+  &::after {
     content: '';
     position: absolute;
     height: 2px;
     width: 200px;
     background-color: $sky-darker;
-    top: 0;
+    bottom: 0;
     left: 0;
   }
 }
+.h2 {
+  display: inline-block;
+  font-weight: $font-weight-light;
+  color: $warm-grey-light;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: $gutter-mobile 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+.animateWorkTitle {
+  border-right: 2px solid rgba(255, 255, 255, 0.75);
+  animation: typewriter 2.5s steps(44) 1s 1 normal both,
+    blinkTextCursor 600ms steps(44) 8 normal;
+  animation-fill-mode: forwards;
+}
 .h3 {
+  display: inline-block;
   padding: 0;
   color: $sky-darker;
 }
 .imageWrapper {
+  visibility: hidden;
   position: relative;
-  height: 520px;
-  flex-basis: 430px;
+  height: 360px;
+  width: 300px;
   flex-grow: 0;
   flex-shrink: 0;
-  margin-left: auto;
+  margin: auto;
+}
+.animateImageWrapper {
+  visibility: visible;
+  animation: slideFromRightFar 1.2s;
 }
 .box {
   position: absolute;
-  width: 360px;
-  height: 460px;
+  width: 240px;
+  height: 300px;
   top: 0;
   right: 0;
   border: solid 12px $sky;
-  // background-color: rgba(174, 195, 243, 0.5);
 }
 .image {
   position: absolute;
+}
+.imageLoaded {
   background: url('/img/headerimage.jpeg') no-repeat center center;
   background-size: cover;
-  width: 350px;
-  height: 450px;
+  width: 240px;
+  height: 300px;
   bottom: 0;
   left: 0;
   border: solid 12px $warm-grey-light;
-  background-color: rgba(40, 71, 143, 0.3);
+}
+@media screen and (min-width: $breakpoint-ipad) {
+  .container {
+    padding: 120px;
+  }
+  .flexWrapper {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+  }
+  .content {
+    padding-right: 40px;
+    box-sizing: border-box;
+    min-width: 400px;
+  }
+  .h1 {
+    padding: $gutter-desktop 0;
+  }
+  .h2 {
+    margin-top: 40px;
+  }
+}
+@media screen and (min-width: $breakpoint-laptop) {
+  .container {
+    padding: 160px;
+  }
+  .flexWrapper {
+    max-width: 1400px;
+  }
+  .content {
+    padding-right: 80px;
+    min-width: 600px;
+  }
+  .imageWrapper {
+    height: 520px;
+    flex-basis: 430px;
+    margin-left: auto;
+  }
+  .box {
+    width: 360px;
+    height: 460px;
+  }
+  .image {
+    width: 350px;
+    height: 450px;
+  }
 }

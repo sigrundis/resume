@@ -1,7 +1,17 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Separator.module.scss';
-const { separator } = styles;
+const { separator, middle } = styles;
 
-const Separator = () => <div className={separator}></div>;
+interface ISeparator {
+  centered?: boolean;
+  className?: string;
+}
+
+const Separator = ({ centered, className }: ISeparator) => (
+  <div
+    className={classNames(separator, className, { [middle]: centered })}
+  ></div>
+);
 
 export default Separator;

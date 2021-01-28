@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, ReactElement } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useLayoutEffect,
+  ReactElement,
+} from 'react';
 import styles from './ExpandWithAnimation.module.scss';
 
 const { container } = styles;

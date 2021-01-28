@@ -1,0 +1,19 @@
+@import '../../css/variables.scss';
+
+.button {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  background-color: $sky-darker;
+  color: $white;
+  border-radius: $base-border-radius;
+  box-shadow: $base-box-shadow;
+  z-index: 1;
+  cursor: pointer;
+  font-family: Montserrat;
+  font-size: $font-size-m;
+  transition: background-color 0.4s;
+  &:hover {
+    background-color: $sky;
+  }
+}

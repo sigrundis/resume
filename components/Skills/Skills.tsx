@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { navItems } from '../../data/nav';
+import { SET_SELECTED_NAV } from '../../store/store';
 import useIsInViewport from 'use-is-in-viewport';
 import classNames from 'classnames';
 import { programmingLanguages, frameworks } from '../../data/computerSkills';
@@ -13,6 +16,7 @@ const {
   h3,
   flexWrapper,
   progressBars,
+  secondProgressBars,
   bullet,
   advancedBullet,
   intermediateBullet,
@@ -20,12 +24,14 @@ const {
 } = styles;
 
 const Skills = () => {
+  const dispatch = useDispatch();
   const [isInViewport, targetRef] = useIsInViewport();
   const [animate, setAnimate] = useState<boolean>(false);
 
   useEffect(() => {
     if (isInViewport) {
       setAnimate(true);
+      dispatch({ type: SET_SELECTED_NAV, payload: navItems.SKILLS });
     }
   }, [isInViewport]);
 
@@ -47,11 +53,11 @@ const Skills = () => {
   );
 
   return (
-    <>
+    <div id="skills">
       <Headline headline="Computer Skills" subtitle={subtitle} noPadding />
-      <Section ref={targetRef} tall>
+      <Section tall>
         <div className={flexWrapper}>
-          <div className={progressBars}>
+          <div ref={targetRef} className={progressBars}>
             <h3 className={h3}>Programming Languages</h3>
             {programmingLanguages.map(
               ({ title, percentage }: IComputerSkill, idx: number) => (
@@ -67,7 +73,7 @@ const Skills = () => {
               )
             )}
           </div>
-          <div className={progressBars}>
+          <div className={classNames(progressBars, secondProgressBars)}>
             <h3 className={h3}>Frameworks / Software</h3>
             {frameworks.map(
               ({ title, percentage }: IComputerSkill, idx: number) => (
@@ -85,7 +91,7 @@ const Skills = () => {
           </div>
         </div>
       </Section>
-    </>
+    </div>
   );
 };
 

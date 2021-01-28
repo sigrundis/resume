@@ -1,12 +1,24 @@
 @import '../../css/variables.scss';
+@import '../../css/keyframes.scss';
 
 .container {
   display: flex;
   flex-flow: column;
   align-items: center;
   text-align: center;
-  padding: 50px 0;
+  padding: 50px $gutter-mobile;
   background-color: $neutral;
+}
+.h2,
+.h3,
+.separator {
+  opacity: 0;
+}
+.animateHeadline .h2,
+.animateHeadline .h3,
+.animateHeadline .separator {
+  animation: slideUp 1.2s;
+  animation-fill-mode: forwards;
 }
 .whiteContainer {
   background-color: $white;
@@ -20,4 +32,7 @@
 .h3 {
   font-weight: $font-weight-light;
   padding-bottom: 0;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  max-width: 1200px;
 }

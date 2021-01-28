@@ -1,0 +1,64 @@
+@import '../../css/variables.scss';
+@import '../../css/keyframes.scss';
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: $gutter-mobile;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  &.startAnimation {
+    animation: slideUp 1s, fadeIn 1s;
+    animation-fill-mode: forwards;
+    &:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+    &:nth-child(3) {
+      animation-delay: 1.2s;
+    }
+    &:nth-child(4) {
+      animation-delay: 1.8s;
+    }
+    &:nth-child(5) {
+      animation-delay: 2.4s;
+    }
+    &:nth-child(6) {
+      animation-delay: 3s;
+    }
+  }
+}
+.textWrapper {
+  margin-top: $gutter-mobile;
+  box-sizing: border-box;
+}
+.title {
+  font-weight: $font-weight-medium;
+  padding-bottom: 10px;
+}
+.description {
+  font-weight: $font-weight-light;
+  line-height: 30px;
+}
+
+@media screen and (min-width: $breakpoint-ipad) {
+  .container {
+    flex-flow: row;
+    align-items: flex-start;
+    padding: $gutter-desktop;
+    width: 50%;
+    text-align: left;
+  }
+  .textWrapper {
+    margin-top: 0;
+    padding-left: 20px;
+  }
+}
+
+@media screen and (min-width: $breakpoint-desktop) {
+  .container {
+    width: 30%;
+  }
+}

@@ -1,0 +1,23 @@
+@import '../../css/variables.scss';
+
+.container {
+  width: 100%;
+  line-height: $line-height-paragraph;
+}
+.top {
+  padding: $gutter-desktop 0;
+}
+.bottom {
+  display: flex;
+  border-top: $base-border;
+  padding: $gutter-desktop 0;
+}
+.link {
+  font-size: $font-size-m;
+  color: $neutral;
+  text-decoration: underline;
+  margin-right: 20px;
+}
+.copyright {
+  margin-left: auto;
+}

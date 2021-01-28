@@ -1,12 +1,29 @@
+@import '../../css/variables.scss';
+
 .container {
   display: flex;
-  height: 400px;
-}
-.tallContainer {
-  height: 600px;
+  flex-wrap: wrap;
+  height: 450px;
 }
 .image {
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+}
+@media screen and (min-width: $breakpoint-ipad) {
+  .container {
+    height: 400px;
+  }
+  .tallContainer {
+    height: 600px;
+  }
+}
+@media screen and (max-width: $breakpoint-ipad) {
+  .image {
+    width: 50% !important;
+  }
+  .oneImage {
+    width: 100% !important;
+    background-position: center right;
+  }
 }

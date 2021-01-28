@@ -2,7 +2,6 @@
 
 .container {
   position: relative;
-  display: flex;
   align-items: center;
   height: 100%;
 }
@@ -11,6 +10,7 @@
 }
 .textWrapper {
   text-align: justify;
+  margin-top: $gutter-mobile;
 }
 .paragraph {
   font-size: $font-size-m;
@@ -18,18 +18,18 @@
 }
 .imageWrapper {
   position: relative;
-  height: 80%;
-  flex-basis: 430px;
+  height: 340px;
+  width: 300px;
   flex-grow: 0;
   flex-shrink: 0;
-  margin-left: 120px;
+  margin: auto;
 }
 .portrait {
   position: absolute;
   background: url('/img/blue.JPG') no-repeat top center;
   background-size: cover;
-  height: 400px;
-  width: 360px;
+  height: 300px;
+  width: 240px;
   left: 0;
   bottom: 0;
   border: solid white 12px;
@@ -38,8 +38,27 @@
   position: absolute;
   background: url('/img/white-bridge.JPG') no-repeat top center;
   background-size: cover;
-  height: 400px;
-  width: 360px;
+  height: 300px;
+  width: 240px;
   top: 0;
   right: 0;
+}
+@media screen and (min-width: $breakpoint-laptop) {
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .imageWrapper {
+    height: 500px;
+    flex-basis: 430px;
+    margin-left: 120px;
+  }
+  .portrait {
+    height: 400px;
+    width: 360px;
+  }
+  .background {
+    height: 400px;
+    width: 360px;
+  }
 }

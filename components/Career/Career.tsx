@@ -11,9 +11,10 @@ const {
   flexWrapper,
   item,
   image,
-  rightSide,
-  h3,
+  content,
+  title,
   passionTitle,
+  swipeableViewsStyle,
   paragraph: paragraphStyle,
   arrows,
   arrow,
@@ -48,8 +49,8 @@ const Career = () => {
           className={classNames(image, { [fadeInAnimation]: fadeIn })}
           style={{ backgroundImage: `url(${passionImages[index]})` }}
         />
-        <div className={rightSide}>
-          <h3 className={h3}>My story</h3>
+        <div className={content}>
+          <h3 className={title}>My story</h3>
           <Separator />
           <SwipeableViews
             index={index}
@@ -59,10 +60,11 @@ const Career = () => {
               }
             }}
             enableMouseEvents
+            style={{ width: '100%' }}
           >
             {passionList.map(({ title, paragraph }: IPassion) => (
               <div className={item} key={title}>
-                <h3 className={classNames(passionTitle)}>{title}</h3>
+                <h3 className={passionTitle}>{title}</h3>
                 <p className={paragraphStyle}>{paragraph}</p>
               </div>
             ))}

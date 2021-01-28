@@ -33,9 +33,16 @@ $font-weight-bold: 700;
 $font-size-xs: 12px;
 $font-size-s: 14px;
 $font-size-m: 16px;
+$font-size-mobile-l: 20px;
 $font-size-l: 26px;
 $font-size-xl: 42px;
 $font-size-xxl: 56px;
+
+// Breakpooints for screen sizes
+$breakpoint-mobile: 480px;
+$breakpoint-ipad: 768px;
+$breakpoint-laptop: 1024px;
+$breakpoint-desktop: 1200px;
 
 // Line height
 $line-height-paragraph: 30px;
@@ -47,9 +54,14 @@ $section-banner-height: 600px;
 // Width
 $base-border-width: 1px;
 
+// Border
+$base-border: $base-border-width solid $border-color;
+
 // Padding
 $gutter-desktop: 30px;
-$padding-section: 60px 80px;
+$gutter-mobile: 15px;
+$padding-section-desktop: 60px 80px;
+$padding-section-mobile: 30px;
 
 // Box shadow
 $base-box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.12);

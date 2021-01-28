@@ -5,12 +5,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: $section-banner-height;
-  padding: $padding-section;
+  min-height: $section-banner-height;
+  padding: $padding-section-mobile;
   background-color: $neutral;
 }
 .whiteContainer {
   background-color: $white;
+}
+.darkContainer {
+  background-color: $night-dark;
+  color: $bright-blue-grey;
 }
 .tallContainer {
   height: auto;
@@ -25,4 +29,10 @@
   height: 100%;
   width: 100%;
   max-width: 1400px;
+}
+
+@media screen and (min-width: $breakpoint-ipad) {
+  .container {
+    padding: $padding-section-desktop;
+  }
 }

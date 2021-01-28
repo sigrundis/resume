@@ -1,0 +1,57 @@
+@import '../../css/variables.scss';
+
+.wrapper {
+  position: relative;
+  width: 30px;
+  height: 22px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+  margin: $gutter-mobile;
+  box-sizing: border-box;
+}
+.top,
+.middle,
+.bottom {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 30px;
+  background: $sky-darker;
+  border-radius: 6px;
+  opacity: 1;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 0.25s ease-in-out;
+}
+.top {
+  top: 0px;
+  transform-origin: left center;
+}
+.middle {
+  top: 9px;
+  transform-origin: left center;
+}
+.bottom {
+  top: 18px;
+  transform-origin: left center;
+}
+.open .top {
+  transform: rotate(45deg);
+  top: -3px;
+  left: 0;
+}
+.open .middle {
+  width: 0%;
+  opacity: 0;
+}
+.open .bottom {
+  transform: rotate(-45deg);
+  top: 18px;
+  left: 0;
+}
+@media screen and (min-width: $breakpoint-laptop) {
+  .wrapper {
+    display: none;
+  }
+}

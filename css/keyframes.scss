@@ -6,6 +6,16 @@
     opacity: 1;
   }
 }
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
 @keyframes expandWidth {
   0% {
     width: 0;
@@ -23,9 +33,27 @@
     transform: translateY(0);
   }
 }
+@keyframes slideUpFar {
+  from {
+    transform: translateY(300px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 @keyframes slideFromRight {
   from {
     transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideFromRightFar {
+  from {
+    transform: translateX(200px);
   }
   to {
     opacity: 1;
@@ -39,5 +67,27 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 13em;
+  }
+}
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, 0.75);
+  }
+  to {
+    border-right-color: transparent;
+  }
+}
+@keyframes removeBoarder {
+  to {
+    border: none;
   }
 }

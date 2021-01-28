@@ -1,1 +1,0 @@
-{"ast":null,"code":"export { default } from './WorkExperience';","map":{"version":3,"sources":["/Users/sigrundish/personal-apps/resume/components/WorkExperience/index.js"],"names":["default"],"mappings":"AAAA,SAASA,OAAT,QAAwB,kBAAxB","sourcesContent":["export { default } from './WorkExperience';\n"]},"metadata":{},"sourceType":"module"}

@@ -1,20 +1,15 @@
 @import '../../css/mixin.scss';
 @import '../../css/keyframes.scss';
 @import '../../css/variables.scss';
-
 .flexWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
   width: 100%;
 }
 .item {
   cursor: grab;
 }
 .image {
-  height: 80%;
-  width: 50%;
+  height: 300px;
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -22,22 +17,35 @@
 .fadeInAnimation {
   animation: fadein 0.8s;
 }
-.rightSide {
-  flex-grow: 1;
+.content {
   position: relative;
-  padding-left: 60px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
   box-sizing: border-box;
-  width: 60%;
+}
+.swipeableViewsStyle {
+  width: 100%;
 }
 .passionTitle {
-  font-weight: $font-weight-light;
-  padding: 20px 0;
+  font-weight: $font-weight-regular;
+  padding: 20px;
+  text-align: center;
 }
-.h3 {
+.title {
   text-transform: uppercase;
 }
+.paragraph {
+  font-weight: $font-weight-light;
+}
 .arrows {
+  position: absolute;
   display: flex;
+  top: 92px;
+  left: 0;
+  right: 0;
 }
 .arrow {
   cursor: pointer;
@@ -47,7 +55,7 @@
 }
 .arrowRight {
   @include arrowRight($sky);
-  margin-left: 10px;
+  margin-left: auto;
 }
 .arrowDisabled {
   border-color: $border-color;
@@ -58,4 +66,35 @@
   line-height: 30px;
   text-align: justify;
   margin-top: 0;
+}
+
+@media screen and (min-width: $breakpoint-laptop) {
+  .flexWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $section-banner-height;
+  }
+  .image {
+    height: 80%;
+    width: 50%;
+  }
+  .content {
+    flex-grow: 1;
+    align-items: flex-start;
+    position: relative;
+    padding-left: 60px;
+    box-sizing: border-box;
+    width: 60%;
+  }
+  .passionTitle {
+    text-align: left;
+    padding: 20px 0;
+  }
+  .arrows {
+    position: static;
+  }
+  .arrowRight {
+    margin-left: 10px;
+  }
 }

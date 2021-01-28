@@ -28,15 +28,39 @@
   background-color: $sky-lighter;
 }
 .h3 {
-  padding: 0;
   white-space: nowrap;
-  font-weight: $font-weight-light;
 }
 .flexWrapper {
   display: flex;
+  flex-flow: column;
+  width: 100%;
 }
 .progressBars {
-  width: 50%;
+  margin: auto;
   box-sizing: border-box;
-  padding: 0 140px;
+  width: 80%;
+}
+.secondProgressBars {
+  margin-top: $gutter-mobile;
+}
+@media screen and (min-width: $breakpoint-ipad) {
+  .flexWrapper {
+    flex-flow: row;
+  }
+  .h3 {
+    padding: 0;
+    font-weight: $font-weight-light;
+  }
+  .progressBars {
+    width: 40%;
+  }
+  .secondProgressBars {
+    margin-top: 0;
+    margin-left: auto;
+  }
+}
+@media screen and (min-width: $breakpoint-laptop) {
+  .progressBars {
+    width: 35%;
+  }
 }
