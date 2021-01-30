@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { IState } from '../store/store';
 import { imageBanner1, imageBanner2 } from '../data/imageBanners';
 import GoogleAnalytics from '../components/GoogleAnalytics';
+import GoogleTagManager from '../components/GoogleTagManager';
 import Nav from '../components/Nav';
 import Heading from '../components/Heading';
 import About from '../components/About';
@@ -21,6 +22,7 @@ let Index: NextPage = (store) => {
   return (
     <Fragment>
       <GoogleAnalytics />
+      <GoogleTagManager />
       <Nav selected={selectedNav} />
       <Heading />
       <Expertise />
