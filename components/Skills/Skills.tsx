@@ -26,14 +26,28 @@ const {
 const Skills = () => {
   const dispatch = useDispatch();
   const [isInViewport, targetRef] = useIsInViewport();
-  const [animate, setAnimate] = useState<boolean>(false);
+  const [isLangInViewport, langRef] = useIsInViewport();
+  const [isFrameworksInViewport, frameworksRef] = useIsInViewport();
+  const [animateLanguages, setAnimateLanguages] = useState<boolean>(false);
+  const [animateFrameworks, setAnimateFrameworks] = useState<boolean>(false);
 
   useEffect(() => {
     if (isInViewport) {
-      setAnimate(true);
       dispatch({ type: SET_SELECTED_NAV, payload: navItems.SKILLS });
     }
   }, [isInViewport]);
+
+  useEffect(() => {
+    if (isLangInViewport) {
+      setAnimateLanguages(true);
+    }
+  }, [isLangInViewport]);
+
+  useEffect(() => {
+    if (isFrameworksInViewport) {
+      setAnimateFrameworks(true);
+    }
+  }, [isFrameworksInViewport]);
 
   const subtitle = (
     <>
@@ -56,8 +70,8 @@ const Skills = () => {
     <div id="skills">
       <Headline headline="Computer Skills" subtitle={subtitle} noPadding />
       <Section tall>
-        <div className={flexWrapper}>
-          <div ref={targetRef} className={progressBars}>
+        <div ref={targetRef} className={flexWrapper}>
+          <div ref={langRef} className={progressBars}>
             <h3 className={h3}>Programming Languages</h3>
             {programmingLanguages.map(
               ({ title, percentage }: IComputerSkill, idx: number) => (
@@ -68,12 +82,15 @@ const Skills = () => {
                   advanced={percentage > 75}
                   intermediate={percentage <= 75 && percentage > 60}
                   fundamental={percentage <= 60}
-                  animate={animate}
+                  animate={animateLanguages}
                 />
               )
             )}
           </div>
-          <div className={classNames(progressBars, secondProgressBars)}>
+          <div
+            ref={frameworksRef}
+            className={classNames(progressBars, secondProgressBars)}
+          >
             <h3 className={h3}>Frameworks / Software</h3>
             {frameworks.map(
               ({ title, percentage }: IComputerSkill, idx: number) => (
@@ -84,7 +101,7 @@ const Skills = () => {
                   advanced={percentage > 75}
                   intermediate={percentage <= 75 && percentage > 60}
                   fundamental={percentage <= 60}
-                  animate={animate}
+                  animate={animateFrameworks}
                 />
               )
             )}

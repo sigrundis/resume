@@ -6,8 +6,6 @@ import styles from './Heading.module.scss';
 const {
   container,
   backgroundImage,
-  backgroundImageTiny,
-  backgroundImageLoaded,
   overlay,
   content,
   animateContent,
@@ -29,9 +27,9 @@ const Heading = () => {
     '/img/code2_tiny.jpg',
     '/img/code2.jpg'
   );
-  const { loaded: portraitLoaded } = useProgressiveImg(
-    '/img/headerimage_tiny.jpeg',
-    '/img/headerimage.jpeg'
+  const { src: portraitSrc, loaded: portraitLoaded } = useProgressiveImg(
+    '/img/portrait_tiny.jpg',
+    '/img/portrait.jpg'
   );
 
   return (

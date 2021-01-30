@@ -24,7 +24,7 @@ const Footer = () => {
           <div>GMT+1</div>
         </div>
         <div className={bottom}>
-          <a className={link} href="/documents/resume.pdf" target="_blank">
+          <a className={link} href="/documents/cv.pdf" target="_blank">
             Resume
           </a>
           <a

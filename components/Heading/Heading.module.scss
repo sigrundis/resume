@@ -24,7 +24,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(80, 80, 80, 0.7);
   filter: blur(0);
 }
 .flexWrapper {
@@ -44,7 +44,7 @@
 .h1 {
   position: relative;
   padding: $gutter-mobile 0;
-  color: $warm-grey-light;
+  color: $neutral;
   &::after {
     content: '';
     position: absolute;
@@ -58,7 +58,7 @@
 .h2 {
   display: inline-block;
   font-weight: $font-weight-light;
-  color: $warm-grey-light;
+  color: $neutral;
   bottom: 0;
   left: 0;
   padding: 0;
@@ -104,13 +104,13 @@
   position: absolute;
 }
 .imageLoaded {
-  background: url('/img/headerimage.jpeg') no-repeat center center;
+  background: url('/img/portrait.jpg') no-repeat center center;
   background-size: cover;
   width: 240px;
   height: 300px;
   bottom: 0;
   left: 0;
-  border: solid 12px $warm-grey-light;
+  border: solid 12px $neutral;
 }
 @media screen and (min-width: $breakpoint-ipad) {
   .container {
