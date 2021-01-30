@@ -12,8 +12,16 @@
 .h2,
 .h3,
 .separator {
-  opacity: 0;
+  opacity: 1;
 }
+.containerWithAnimation {
+  .h2,
+  .h3,
+  .separator {
+    opacity: 0;
+  }
+}
+
 .animateHeadline .h2,
 .animateHeadline .h3,
 .animateHeadline .separator {

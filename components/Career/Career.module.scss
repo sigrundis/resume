@@ -57,6 +57,10 @@
   @include arrowRight($sky);
   margin-left: auto;
 }
+.arrowRightAttention {
+  animation: arrowRightAttention 0.6s;
+  animation-iteration-count: 5;
+}
 .arrowDisabled {
   border-color: $border-color;
   cursor: not-allowed;

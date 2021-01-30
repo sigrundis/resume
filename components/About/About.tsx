@@ -7,11 +7,10 @@ import Personal from '../Personal';
 import Career from '../Career';
 import Headline from '../Headline';
 import styles from './About.module.scss';
-const { container, headerWrapper, separator, subtitle } = styles;
 
 const About = () => {
   const dispatch = useDispatch();
-  const [isInViewport, targetRef] = useIsInViewport();
+  const [isInViewport, targetRef] = useIsInViewport({ threshold: 20 });
   const subtitle =
     'Hi there! Glad that you are showing interest to get to know me better.' +
     ' Hopefully it will lead to exiting opportunities that we can work on together.';
@@ -24,7 +23,7 @@ const About = () => {
 
   return (
     <div ref={targetRef} id={navItems.ABOUT}>
-      <Headline headline="About me" subtitle={subtitle} noPadding />
+      <Headline headline="About me" subtitle={subtitle} noPadding animateUp />
       <Personal />
       <Career />
     </div>

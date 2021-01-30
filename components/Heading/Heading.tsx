@@ -22,7 +22,6 @@ const {
 } = styles;
 
 const Heading = () => {
-  const [animateWorkTitle, setAnimateWorkTitle] = useState<boolean>(false);
   const { src, loaded: backgroundLoaded } = useProgressiveImg(
     '/img/code2_tiny.jpg',
     '/img/code2.jpg'

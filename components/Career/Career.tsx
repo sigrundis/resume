@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
+import useIsInViewport from 'use-is-in-viewport';
 import IPassion from '../../typescript/Interfaces/IPassion';
 import { passionList, passionImages } from '../../data/about';
 import Separator from '../Separator';
@@ -20,6 +21,7 @@ const {
   arrow,
   arrowLeft,
   arrowRight,
+  arrowRightAttention,
   arrowDisabled,
   fadeInAnimation,
 } = styles;
@@ -27,12 +29,22 @@ const {
 const Career = () => {
   const [index, setIndex] = useState<number>(0);
   const [fadeIn, setFadeIn] = useState<boolean>(false);
+  const [isArrowInViewport, arrowRightRef] = useIsInViewport();
+  const [animateArrowRight, setAnimateArrowRight] = useState<boolean>(false);
   const isLeftDisabled = index < 1;
   const isRightDisabled = index + 1 === passionList.length;
 
   useEffect(() => {
     setFadeIn(true);
   }, [index]);
+
+  useEffect(() => {
+    if (isArrowInViewport) {
+      setAnimateArrowRight(true);
+    } else {
+      setAnimateArrowRight(false);
+    }
+  }, [isArrowInViewport]);
 
   useEffect(() => {
     if (fadeIn) {
@@ -79,7 +91,9 @@ const Career = () => {
             />
             <div
               role="button"
+              ref={arrowRightRef}
               className={classNames(arrow, arrowRight, {
+                [arrowRightAttention]: animateArrowRight && !isRightDisabled,
                 [arrowDisabled]: isRightDisabled,
               })}
               onClick={isRightDisabled ? () => {} : () => setIndex(index + 1)}

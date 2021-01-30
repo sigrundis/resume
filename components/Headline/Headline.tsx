@@ -6,6 +6,7 @@ import styles from './Headline.module.scss';
 
 const {
   container,
+  containerWithAnimation,
   animateHeadline,
   whiteContainer,
   noPaddingContainer,
@@ -19,9 +20,16 @@ interface IHeadlineProps {
   subtitle?: string | ReactNode;
   white?: boolean;
   noPadding?: boolean;
+  animateUp?: boolean;
 }
 
-const Headline = ({ headline, subtitle, white, noPadding }: IHeadlineProps) => {
+const Headline = ({
+  headline,
+  subtitle,
+  white,
+  noPadding,
+  animateUp,
+}: IHeadlineProps) => {
   const [isInViewport, targetRef] = useIsInViewport();
   const [animate, setAnimate] = useState<boolean>(false);
 
@@ -35,7 +43,8 @@ const Headline = ({ headline, subtitle, white, noPadding }: IHeadlineProps) => {
     <div
       ref={targetRef}
       className={classNames(container, {
-        [animateHeadline]: animate,
+        [containerWithAnimation]: animateUp,
+        [animateHeadline]: animate && animateUp,
         [whiteContainer]: white,
         [noPaddingContainer]: noPadding,
       })}

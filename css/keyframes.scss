@@ -69,7 +69,14 @@
     transform: translateY(0);
   }
 }
-
+@keyframes arrowRightAttention {
+  0% {
+    transform: translateX(0px) rotate(-45deg);
+  }
+  50% {
+    transform: translateX(12px) rotate(-45deg);
+  }
+}
 @keyframes typewriter {
   from {
     width: 0;

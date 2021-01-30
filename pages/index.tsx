@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import { NextPage } from 'next';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { IState } from '../store/store';
 import { imageBanner1, imageBanner2 } from '../data/imageBanners';
+import GoogleAnalytics from '../components/GoogleAnalytics';
 import Nav from '../components/Nav';
 import Heading from '../components/Heading';
 import About from '../components/About';
@@ -19,6 +20,7 @@ let Index: NextPage = (store) => {
 
   return (
     <Fragment>
+      <GoogleAnalytics />
       <Nav selected={selectedNav} />
       <Heading />
       <Expertise />
