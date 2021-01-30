@@ -15,7 +15,7 @@ const GTM = () => {
 
   return (
     <>
-      {NODE_ENV === 'development' && typeof window !== 'undefined' && (
+      {NODE_ENV === 'production' && typeof window !== 'undefined' && (
         <>
           <Head>
             <script
