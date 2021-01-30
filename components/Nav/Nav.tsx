@@ -14,8 +14,15 @@ interface INav {
 const Nav = ({ selected }: INav) => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState<boolean>(false);
 
-  const scrollToElementWithId = (id: string) => {
+  const scrollToElementWithIdMobile = (id: string) => {
     setIsMobileNavOpen(false);
+    if (typeof window !== 'undefined') {
+      var el = document?.getElementById(id);
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToElementWithIdDesktop = (id: string) => {
     if (typeof window !== 'undefined') {
       const yOffset = -48;
       var el = document?.getElementById(id);
@@ -39,7 +46,7 @@ const Nav = ({ selected }: INav) => {
               className={classNames(li, {
                 [selectedLi]: selected === item.id,
               })}
-              onClick={() => scrollToElementWithId(item.id)}
+              onClick={() => scrollToElementWithIdMobile(item.id)}
             >
               {item.title}
             </li>
@@ -55,7 +62,7 @@ const Nav = ({ selected }: INav) => {
             className={classNames(li, {
               [selectedLi]: selected === item.id,
             })}
-            onClick={() => scrollToElementWithId(item.id)}
+            onClick={() => scrollToElementWithIdDesktop(item.id)}
           >
             {item.title}
           </li>

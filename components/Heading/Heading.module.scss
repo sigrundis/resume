@@ -34,8 +34,10 @@
 .content {
   opacity: 0;
   z-index: 1;
+  padding: $gutter-mobile;
   margin-bottom: $gutter-mobile;
   box-sizing: border-box;
+  min-width: 100vw;
 }
 .animateContent {
   animation: slideUpFar 1s, fadeIn 1s;
