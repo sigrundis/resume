@@ -22,7 +22,7 @@ gtag("config", "${GA_ID}");`;
           <script
             async
             dangerouslySetInnerHTML={{
-              __html: '`' + htmlString + '`',
+              __html: htmlString,
             }}
           />
         </Head>

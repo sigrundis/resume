@@ -11,8 +11,6 @@ const GTM = () => {
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`;
 
-  const noScriptString = `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden;"></iframe>`;
-
   return (
     <>
       {NODE_ENV === 'production' && typeof window !== 'undefined' && (
@@ -20,15 +18,10 @@ const GTM = () => {
           <Head>
             <script
               dangerouslySetInnerHTML={{
-                __html: '`' + scriptString + '`',
+                __html: scriptString,
               }}
             />
           </Head>
-          <noscript
-            dangerouslySetInnerHTML={{
-              __html: '`' + noScriptString + '`',
-            }}
-          />
         </>
       )}
     </>
