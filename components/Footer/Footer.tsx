@@ -34,6 +34,13 @@ const Footer = () => {
           >
             Linkdin
           </a>
+          <a
+            className={link}
+            href="https://www.github.com/sigrundis"
+            target="_blank"
+          >
+            Github
+          </a>
           <div className={copyright}>© Sigrún Dís Hauksdóttir</div>
         </div>
       </div>

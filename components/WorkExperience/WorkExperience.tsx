@@ -34,7 +34,6 @@ const WorkExperience = () => {
     }
     if (!showAll) {
       setTimeout(() => {
-        console.log('nowHidden');
         setHidden(true);
       }, 800);
     }

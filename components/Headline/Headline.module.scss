@@ -17,7 +17,7 @@
 .animateHeadline .h2,
 .animateHeadline .h3,
 .animateHeadline .separator {
-  animation: slideUp 1.2s;
+  animation: slideUp 1s, fadeIn 1s;
   animation-fill-mode: forwards;
 }
 .whiteContainer {

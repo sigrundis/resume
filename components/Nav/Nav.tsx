@@ -32,8 +32,9 @@ const Nav = ({ selected }: INav) => {
     <nav className={classNames(nav, { [navMobileOpen]: isMobileNavOpen })}>
       <Hamburger isOpen={isMobileNavOpen} onClick={onClickHamburger}>
         <ul className={mobileUl}>
-          {navItemsList.map((item: INavItem) => (
+          {navItemsList.map((item: INavItem, idx: number) => (
             <li
+              key={`mobile-item-${idx}`}
               role="button"
               className={classNames(li, {
                 [selectedLi]: selected === item.id,
@@ -47,8 +48,9 @@ const Nav = ({ selected }: INav) => {
       </Hamburger>
 
       <ul className={ul}>
-        {navItemsList.map((item: INavItem) => (
+        {navItemsList.map((item: INavItem, idx: number) => (
           <li
+            key={`desktop-item-${idx}`}
             role="button"
             className={classNames(li, {
               [selectedLi]: selected === item.id,
