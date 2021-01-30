@@ -8,6 +8,7 @@ const {
   darkContainer,
   tallContainer,
   noPaddingContainer,
+  noPaddingBottomContainer,
   inner,
 } = styles;
 interface ISectionProps {
@@ -17,10 +18,22 @@ interface ISectionProps {
   dark?: boolean;
   tall?: boolean;
   noPadding?: boolean;
+  noPaddingBottom?: boolean;
 }
 
 const Section = forwardRef(
-  ({ id, children, white, dark, tall, noPadding }: ISectionProps, ref: any) => {
+  (
+    {
+      id,
+      children,
+      white,
+      dark,
+      tall,
+      noPadding,
+      noPaddingBottom,
+    }: ISectionProps,
+    ref: any
+  ) => {
     return (
       <div
         id={id}
@@ -29,6 +42,7 @@ const Section = forwardRef(
           [darkContainer]: dark,
           [tallContainer]: tall,
           [noPaddingContainer]: noPadding,
+          [noPaddingBottomContainer]: noPaddingBottom,
         })}
         ref={ref}
       >

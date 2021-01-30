@@ -13,6 +13,7 @@ const {
   h3,
   separator,
 } = styles;
+
 interface IHeadlineProps {
   headline: string;
   subtitle?: string | ReactNode;

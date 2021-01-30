@@ -5,12 +5,6 @@ import Section from '../Section';
 import styles from './Footer.module.scss';
 
 const { container, top, bottom, link, email, copyright } = styles;
-interface IFooterProps {
-  children: any;
-  white?: boolean;
-  tall?: boolean;
-  noPadding?: boolean;
-}
 
 const Footer = () => {
   return (

@@ -20,6 +20,9 @@
   height: auto;
 }
 .noPaddingContainer {
+  padding: 0;
+}
+.noPaddingBottomContainer {
   padding-bottom: 0;
 }
 .inner {
@@ -34,5 +37,11 @@
 @media screen and (min-width: $breakpoint-ipad) {
   .container {
     padding: $padding-section-desktop;
+  }
+  .noPaddingContainer {
+    padding: 0;
+  }
+  .noPaddingBottomContainer {
+    padding-bottom: 0;
   }
 }

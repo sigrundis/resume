@@ -23,7 +23,7 @@ const Education = () => {
   return (
     <div id="education">
       <Headline headline="Education" white noPadding />
-      <Section ref={targetRef} tall white noPadding>
+      <Section ref={targetRef} tall white noPaddingBottom>
         {educationList.map((item: IEducationItem, idx: number) => (
           <EducationItem
             key={idx}
