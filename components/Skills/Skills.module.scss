@@ -66,6 +66,7 @@
 }
 @media screen and (min-width: $breakpoint-laptop) {
   .progressBars {
+    width: 35%;
     &:first-child {
       margin-right: 60px;
     }
