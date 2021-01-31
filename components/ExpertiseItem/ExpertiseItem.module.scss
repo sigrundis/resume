@@ -49,6 +49,7 @@
     align-items: flex-start;
     padding: $gutter-desktop;
     width: 50%;
+    height: 30%;
     text-align: left;
   }
   .textWrapper {
@@ -60,5 +61,6 @@
 @media screen and (min-width: $breakpoint-desktop) {
   .container {
     width: 30%;
+    height: 50%;
   }
 }

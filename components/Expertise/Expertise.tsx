@@ -33,7 +33,7 @@ const mapIdToIcon = (id: string) => {
 const Expertise = () => {
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState<boolean>(false);
-  const [isInViewport, targetRef] = useIsInViewport();
+  const [isInViewport, targetRef] = useIsInViewport({ threshold: 20 });
 
   useEffect(() => {
     if (isInViewport) {

@@ -7,15 +7,30 @@
 .item {
   cursor: grab;
 }
-.image {
-  height: 300px;
+.slides {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.imagePile {
+  position: relative;
+  width: 90%;
+  height: 90%;
+}
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
-}
-.fadeInAnimation {
-  animation: fadein 0.8s;
 }
 .content {
   position: relative;
@@ -59,7 +74,7 @@
 }
 .arrowRightAttention {
   animation: arrowRightAttention 0.6s;
-  animation-iteration-count: 5;
+  animation-iteration-count: 4;
 }
 .arrowDisabled {
   border-color: $border-color;
@@ -72,6 +87,16 @@
   margin-top: 0;
 }
 
+@media screen and (min-width: $breakpoint-ipad) {
+  .slides {
+    height: 400px;
+  }
+  .imagePile {
+    height: 80%;
+    width: 75%;
+  }
+}
+
 @media screen and (min-width: $breakpoint-laptop) {
   .flexWrapper {
     display: flex;
@@ -79,9 +104,13 @@
     justify-content: center;
     height: $section-banner-height;
   }
-  .image {
-    height: 80%;
+  .slides {
+    height: 100%;
     width: 50%;
+  }
+  .imagePile {
+    height: 70%;
+    width: 80%;
   }
   .content {
     flex-grow: 1;

@@ -29,8 +29,9 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  justify-content: center;
+  flex: 1;
+  align-self: stretch;
   max-width: 1400px;
 }
 

@@ -1,4 +1,5 @@
 import IPassion from '../typescript/Interfaces/IPassion';
+import IProggressiveImage from '../typescript/Interfaces/IProgressiveImage';
 
 export const passionList: IPassion[] = [
   {
@@ -43,9 +44,9 @@ export const passionList: IPassion[] = [
   },
 ];
 
-export const passionImages = [
-  '/img/map.jpg',
-  '/img/dohop.jpg',
-  '/img/sdu.jpg',
-  '/img/running.jpg',
+export const passionImages: IProggressiveImage[] = [
+  { lowQualitySrc: '/img/map.jpg', highQualitySrc: '/img/map.jpg' },
+  { lowQualitySrc: '/img/dohop.jpg', highQualitySrc: '/img/dohop.jpg' },
+  { lowQualitySrc: '/img/sdu.jpg', highQualitySrc: '/img/sdu.jpg' },
+  { lowQualitySrc: '/img/running.jpg', highQualitySrc: '/img/running.jpg' },
 ];

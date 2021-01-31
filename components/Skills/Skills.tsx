@@ -69,7 +69,7 @@ const Skills = () => {
   return (
     <div id="skills">
       <Headline headline="Computer Skills" subtitle={subtitle} noPadding />
-      <Section tall noPadding>
+      <Section noPadding>
         <div ref={targetRef} className={flexWrapper}>
           <div ref={langRef} className={progressBars}>
             <h3 className={h3}>Programming Languages</h3>
