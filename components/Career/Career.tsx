@@ -21,6 +21,9 @@ const {
   passionTitle,
   paragraph: paragraphStyle,
   arrows,
+  arrowWrapper,
+  arrowRightWrapper,
+  arrowWrapperDisabled,
   arrow,
   arrowLeft,
   arrowRight,
@@ -188,24 +191,37 @@ const Career = () => {
           </SwipeableViews>
           <div className={arrows}>
             <div
-              role="button"
-              className={classNames(arrow, arrowLeft, {
-                [arrowDisabled]: isLeftDisabled,
+              className={classNames(arrowWrapper, {
+                [arrowWrapperDisabled]: isLeftDisabled,
               })}
+              role="button"
               onClick={
                 isLeftDisabled ? () => {} : () => onToggleSlide(index - 1)
               }
-            />
+            >
+              <div
+                role="button"
+                className={classNames(arrow, arrowLeft, {
+                  [arrowDisabled]: isLeftDisabled,
+                })}
+              />
+            </div>
             <div
-              role="button"
-              className={classNames(arrow, arrowRight, {
-                [arrowRightAttention]: animateArrowRight && !isRightDisabled,
-                [arrowDisabled]: isRightDisabled,
+              className={classNames(arrowWrapper, arrowRightWrapper, {
+                [arrowWrapperDisabled]: isRightDisabled,
               })}
+              role="button"
               onClick={
                 isRightDisabled ? () => {} : () => onToggleSlide(index + 1)
               }
-            />
+            >
+              <div
+                className={classNames(arrow, arrowRight, {
+                  [arrowRightAttention]: animateArrowRight && !isRightDisabled,
+                  [arrowDisabled]: isRightDisabled,
+                })}
+              />
+            </div>
           </div>
         </div>
       </div>

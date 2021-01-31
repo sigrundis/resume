@@ -9,6 +9,7 @@
   box-sizing: border-box;
   width: 100%;
   &:last-child {
+    margin-bottom: 20px;
     .dividor {
       bottom: 10px;
     }
@@ -62,6 +63,11 @@
   padding: 12px 0;
 }
 @media screen and (min-width: $breakpoint-ipad) {
+  .container {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
   .year {
     padding: 20px 0;
   }

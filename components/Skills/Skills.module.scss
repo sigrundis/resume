@@ -52,7 +52,13 @@
     font-weight: $font-weight-light;
   }
   .progressBars {
-    width: 40%;
+    width: 50%;
+    &:first-child {
+      margin-right: 40px;
+    }
+    &:last-child {
+      margin-left: 40px;
+    }
   }
   .secondProgressBars {
     margin: 0 auto;
@@ -60,6 +66,11 @@
 }
 @media screen and (min-width: $breakpoint-laptop) {
   .progressBars {
-    width: 35%;
+    &:first-child {
+      margin-right: 60px;
+    }
+    &:last-child {
+      margin-left: 60px;
+    }
   }
 }

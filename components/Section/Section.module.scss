@@ -5,7 +5,7 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: stretch;
   box-sizing: border-box;
   min-height: 100vh;
   padding: $padding-section-mobile;
@@ -29,12 +29,12 @@
 }
 .inner {
   display: flex;
+  flex: 1 1;
+  max-width: 1400px;
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  flex: 1;
-  align-self: stretch;
-  max-width: 1400px;
+  margin: auto;
 }
 
 @media screen and (min-width: $breakpoint-ipad) {

@@ -26,7 +26,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/sigrundis/"
             target="_blank"
           >
-            Linkdin
+            LinkedIn
           </a>
           <a
             className={link}

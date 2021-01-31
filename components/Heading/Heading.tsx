@@ -39,7 +39,7 @@ const Heading = () => {
         <div
           className={classNames(content, { [animateContent]: portraitLoaded })}
         >
-          <h2 className={h3}>Hi, I'm</h2>
+          <div className={h3}>Hi, I'm</div>
           <h1 className={h1}>Sigrún Dís Hauksdóttir</h1>
           <h2
             className={classNames(h2, {

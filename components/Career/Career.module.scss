@@ -58,23 +58,27 @@
 .arrows {
   position: absolute;
   display: flex;
-  top: 92px;
+  top: 86px;
   left: 0;
   right: 0;
 }
-.arrow {
+.arrowWrapper {
   cursor: pointer;
+  padding: 10px;
+}
+.arrowRightWrapper {
+  margin-left: auto;
 }
 .arrowLeft {
   @include arrowLeft($sky);
 }
 .arrowRight {
   @include arrowRight($sky);
-  margin-left: auto;
 }
 .arrowRightAttention {
   animation: arrowRightAttention 0.6s;
   animation-iteration-count: 4;
+  animation-fill-mode: forwards;
 }
 .arrowDisabled {
   border-color: $border-color;
@@ -124,10 +128,13 @@
     text-align: left;
     padding: 20px 0;
   }
+  .arrowWrapper {
+    padding: 6px;
+  }
   .arrows {
     position: static;
   }
-  .arrowRight {
+  .arrowRightWrapper {
     margin-left: 10px;
   }
 }

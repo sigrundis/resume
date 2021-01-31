@@ -78,6 +78,9 @@
   animation-delay: 0.8s;
 }
 .h3 {
+  text-transform: uppercase;
+  font-weight: $font-weight-medium;
+  font-size: $font-size-l;
   display: inline-block;
   padding: 0;
   color: $sky-darker;
@@ -135,6 +138,9 @@
   }
   .h2 {
     margin-top: 40px;
+  }
+  .h3 {
+    font-size: $font-size-xl;
   }
 }
 @media screen and (min-width: $breakpoint-laptop) {
