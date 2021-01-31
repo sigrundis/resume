@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
+import useIsInViewport from 'use-is-in-viewport';
 import gsap from 'gsap';
 import Separator from '../Separator';
-import Section from '../Section';
 import styles from './Personal.module.scss';
 
 const {
@@ -20,14 +20,14 @@ interface IPersonal {
 
 const Personal = ({ startAnimate }: IPersonal) => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
+  const [isInViewport, targetRef] = useIsInViewport({ threshold: 30 });
 
   useEffect(() => {
-    console.log('startanimate', startAnimate);
     const textItems = textWrapperRef?.current?.childNodes;
 
     if (!startAnimate) {
       gsap.set(textItems, { opacity: 0, rotationX: -50, y: 50 });
-    } else {
+    } else if (startAnimate && isInViewport) {
       const timeline = gsap.timeline();
       timeline.to(textItems, {
         opacity: 1,
@@ -39,11 +39,11 @@ const Personal = ({ startAnimate }: IPersonal) => {
         transformOrigin: '0 50%',
       });
     }
-  }, [startAnimate]);
+  }, [startAnimate, isInViewport]);
 
   return (
     <>
-      <div className={container}>
+      <div ref={targetRef} className={container}>
         <div className={imageWrapper}>
           <div className={background}></div>
           <div className={portrait}></div>

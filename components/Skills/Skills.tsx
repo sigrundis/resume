@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import { programmingLanguages, frameworks } from '../../data/computerSkills';
 import Section from '../Section';
 import ProgressBar from '../ProgressBar';
-import Headline from '../Headline';
 import styles from './Skills.module.scss';
 import IComputerSkill from '../../typescript/Interfaces/IComputerSkill';
 
