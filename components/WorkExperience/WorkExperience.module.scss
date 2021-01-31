@@ -1,7 +1,7 @@
 @import '../../css/variables.scss';
 @import '../../css/keyframes.scss';
 .items {
-  margin-bottom: $gutter-desktop;
+  margin: $gutter-desktop 0;
 }
 .visible {
   display: block;
