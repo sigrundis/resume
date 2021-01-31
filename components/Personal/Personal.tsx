@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
 import Separator from '../Separator';
 import Section from '../Section';
 import styles from './Personal.module.scss';
@@ -13,15 +14,41 @@ const {
   h3,
 } = styles;
 
-const Personal = () => {
+interface IPersonal {
+  startAnimate?: boolean;
+}
+
+const Personal = ({ startAnimate }: IPersonal) => {
+  const textWrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log('startanimate', startAnimate);
+    const textItems = textWrapperRef?.current?.childNodes;
+
+    if (!startAnimate) {
+      gsap.set(textItems, { opacity: 0, rotationX: -50, y: 50 });
+    } else {
+      const timeline = gsap.timeline();
+      timeline.to(textItems, {
+        opacity: 1,
+        stagger: 0.4,
+        duration: 1,
+        rotationX: 0,
+        y: 0,
+        ease: 'Power3.inOut',
+        transformOrigin: '0 50%',
+      });
+    }
+  }, [startAnimate]);
+
   return (
-    <Section>
+    <>
       <div className={container}>
         <div className={imageWrapper}>
           <div className={background}></div>
           <div className={portrait}></div>
         </div>
-        <div className={textWrapper}>
+        <div ref={textWrapperRef} className={textWrapper}>
           <h3 className={h3}>On the personal notes</h3>
           <Separator />
           <p className={paragraph}>
@@ -44,7 +71,7 @@ const Personal = () => {
           </p>
         </div>
       </div>
-    </Section>
+    </>
   );
 };
 

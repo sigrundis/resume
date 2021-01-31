@@ -1,5 +1,6 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, ReactElement } from 'react';
 import classNames from 'classnames';
+import Headline from '../../components/Headline';
 import styles from './Section.module.scss';
 
 const {
@@ -7,30 +8,39 @@ const {
   whiteContainer,
   darkContainer,
   tallContainer,
-  noPaddingContainer,
+  shortContainer,
   noPaddingBottomContainer,
   inner,
 } = styles;
+
 interface ISectionProps {
+  headline?: string;
+  subtitle?: string | ReactElement;
   id?: string;
   children: any;
   white?: boolean;
   dark?: boolean;
   tall?: boolean;
-  noPadding?: boolean;
+  short?: boolean;
+  noHeadlinePadding?: boolean;
   noPaddingBottom?: boolean;
+  onAnimateComplete?: () => any;
 }
 
 const Section = forwardRef(
   (
     {
       id,
+      headline,
+      subtitle,
       children,
       white,
       dark,
       tall,
-      noPadding,
+      short,
+      noHeadlinePadding,
       noPaddingBottom,
+      onAnimateComplete,
     }: ISectionProps,
     ref: any
   ) => {
@@ -41,11 +51,20 @@ const Section = forwardRef(
           [whiteContainer]: white,
           [darkContainer]: dark,
           [tallContainer]: tall,
-          [noPaddingContainer]: noPadding,
+          [shortContainer]: short,
           [noPaddingBottomContainer]: noPaddingBottom,
         })}
         ref={ref}
       >
+        {headline && (
+          <Headline
+            white={white}
+            headline={headline}
+            subtitle={subtitle}
+            noPadding={noHeadlinePadding}
+            onAnimateComplete={onAnimateComplete}
+          />
+        )}
         <div className={inner}>{children}</div>
       </div>
     );

@@ -7,6 +7,7 @@ import { educationList } from '../../data/education';
 import EducationItem from '../EducationItem';
 import Section from '../Section';
 import Headline from '../Headline';
+import { navItems } from '../../data/nav';
 
 const Education = () => {
   const dispatch = useDispatch();
@@ -15,25 +16,29 @@ const Education = () => {
 
   useEffect(() => {
     if (isInViewport) {
-      setAnimate(true);
       dispatch({ type: SET_SELECTED_NAV, payload: 'education' });
     }
   }, [isInViewport]);
 
   return (
-    <div id="education">
-      <Headline headline="Education" white noPadding />
-      <Section ref={targetRef} tall white noPaddingBottom>
-        {educationList.map((item: IEducationItem, idx: number) => (
-          <EducationItem
-            key={idx}
-            item={item}
-            animate={animate}
-            animateDelay={idx * 0.5}
-          />
-        ))}
-      </Section>
-    </div>
+    <Section
+      ref={targetRef}
+      tall
+      white
+      noPaddingBottom
+      headline="Education"
+      onAnimateComplete={() => setAnimate(true)}
+      id={navItems.EDUCATION}
+    >
+      {educationList.map((item: IEducationItem, idx: number) => (
+        <EducationItem
+          key={idx}
+          item={item}
+          animate={animate}
+          animateDelay={idx * 0.5}
+        />
+      ))}
+    </Section>
   );
 };
 

@@ -28,8 +28,13 @@
 .fundamentalProgress {
   background-color: $sky-lighter;
 }
-
 .label {
   padding: 10px 0;
   white-space: nowrap;
+}
+@media screen and (min-width: $breakpoint-ipad) {
+  .label {
+    padding: 20px 0;
+    white-space: nowrap;
+  }
 }

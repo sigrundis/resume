@@ -8,7 +8,7 @@ const { container, top, bottom, link, email, copyright } = styles;
 
 const Footer = () => {
   return (
-    <Section dark>
+    <Section dark short>
       <div className={container}>
         <div className={top}>
           <h3>Let's talk</h3>

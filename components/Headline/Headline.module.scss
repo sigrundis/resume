@@ -9,30 +9,11 @@
   padding: 50px $gutter-mobile;
   background-color: $neutral;
 }
-.h2,
-.h3,
-.separator {
-  opacity: 1;
-}
-.containerWithAnimation {
-  .h2,
-  .h3,
-  .separator {
-    opacity: 0;
-  }
-}
-
-.animateHeadline .h2,
-.animateHeadline .h3,
-.animateHeadline .separator {
-  animation: slideUp 1s, fadeIn 1s;
-  animation-fill-mode: forwards;
-}
 .whiteContainer {
   background-color: $white;
 }
 .noPaddingContainer {
-  padding-bottom: 0;
+  padding-top: 0;
 }
 .h2 {
   padding-top: 0;

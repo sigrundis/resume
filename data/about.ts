@@ -13,10 +13,10 @@ export const passionList: IPassion[] = [
   {
     title: 'My specialties',
     paragraph:
-      'Since 2017 I have been working as a software developer for a company ' +
-      "called Dohop. I've spent the last three years helping to build " +
-      'flight search engines that connect itineraries and allows customers ' +
-      'to book them in one place easily. My main focus there is developing web applications ' +
+      'Since 2017 I have been working as a software developer for a company called Dohop, ' +
+      'mainly working on building flight search engines that connect itineraries and allows customers to book them in one place easily. ' +
+      'From there I have experience in developing both B2C and B2B software solutions, as well as internal systems for the company. ' +
+      'My main focus there is developing web applications ' +
       'where my strengths lies in the front-end implementation besides working with data analytics and reporting. ',
   },
   {

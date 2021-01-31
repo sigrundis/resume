@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { navItems } from '../../data/nav';
+import gsap from 'gsap';
 import { SET_SELECTED_NAV } from '../../store/store';
 import useIsInViewport from 'use-is-in-viewport';
 import { expertiseList } from '../../data/expertise';
@@ -31,37 +32,57 @@ const mapIdToIcon = (id: string) => {
 };
 
 const Expertise = () => {
+  const expertiseRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
   const [animation, setAnimation] = useState<boolean>(false);
-  const [isInViewport, targetRef] = useIsInViewport({ threshold: 20 });
+  const [isInViewport, targetRef] = useIsInViewport({ threshold: 30 });
 
   useEffect(() => {
     if (isInViewport) {
-      setAnimation(true);
       dispatch({ type: SET_SELECTED_NAV, payload: navItems.EXPTERTISE });
     }
   }, [isInViewport]);
 
+  const animateExpertise = () => {
+    const expertiseItems = expertiseRef?.current?.childNodes;
+    const timeline = gsap.timeline();
+    timeline.fromTo(
+      expertiseItems,
+      { y: 50 },
+      {
+        opacity: 1,
+        stagger: 0.4,
+        duration: 1,
+        ease: 'Power3.inOut',
+        transformOrigin: '0 50%',
+        rotationX: 0,
+        y: 0,
+      }
+    );
+  };
+
   return (
-    <div id={navItems.EXPTERTISE}>
-      <Headline white headline={'Expertise'} noPadding />
-      <Section ref={targetRef} white>
-        <div className={expertise}>
-          {expertiseList.map((expertise: IExpertiseItem, idx: number) => {
-            const { id, title, description } = expertise;
-            return (
-              <ExpertiseItem
-                key={`expertise-${idx}`}
-                icon={mapIdToIcon(id)}
-                title={title}
-                description={description}
-                animation={animation}
-              />
-            );
-          })}
-        </div>
-      </Section>
-    </div>
+    <Section
+      ref={targetRef}
+      white
+      headline={'Expertise'}
+      onAnimateComplete={() => animateExpertise()}
+      id={navItems.EXPTERTISE}
+    >
+      <div ref={expertiseRef} className={expertise}>
+        {expertiseList.map((expertise: IExpertiseItem, idx: number) => {
+          const { id, title, description } = expertise;
+          return (
+            <ExpertiseItem
+              key={`expertise-${idx}`}
+              icon={mapIdToIcon(id)}
+              title={title}
+              description={description}
+            />
+          );
+        })}
+      </div>
+    </Section>
   );
 };
 

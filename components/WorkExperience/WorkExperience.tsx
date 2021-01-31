@@ -23,7 +23,6 @@ const WorkExperience = () => {
 
   useEffect(() => {
     if (isInViewport) {
-      setAnimate(true);
       dispatch({ type: SET_SELECTED_NAV, payload: navItems.WORK_EXPERIENCE });
     }
   }, [isInViewport]);
@@ -40,12 +39,36 @@ const WorkExperience = () => {
   }, [showAll]);
 
   return (
-    <div id={navItems.WORK_EXPERIENCE}>
-      <Headline headline="Work Experience" noPadding white />
-      <Section ref={targetRef} tall white>
-        <div className={items}>
+    <Section
+      ref={targetRef}
+      tall
+      white
+      headline="Work Experience"
+      onAnimateComplete={() => setAnimate(true)}
+      noHeadlinePadding
+      id={navItems.WORK_EXPERIENCE}
+    >
+      <div className={items}>
+        {workExperienceList
+          .slice(0, 3)
+          .map((item: IWorkExperienceItem, idx: number) => (
+            <WorkExperienceItem
+              key={idx}
+              item={item}
+              animate={animate}
+              animateDelay={idx * 0.5}
+            />
+          ))}
+
+        <div
+          className={classNames(extraItems, {
+            [visible]: showAll,
+            [fadeOut]: !showAll,
+            [hiddenStyle]: hidden,
+          })}
+        >
           {workExperienceList
-            .slice(0, 3)
+            .slice(3, -1)
             .map((item: IWorkExperienceItem, idx: number) => (
               <WorkExperienceItem
                 key={idx}
@@ -54,31 +77,12 @@ const WorkExperience = () => {
                 animateDelay={idx * 0.5}
               />
             ))}
-
-          <div
-            className={classNames(extraItems, {
-              [visible]: showAll,
-              [fadeOut]: !showAll,
-              [hiddenStyle]: hidden,
-            })}
-          >
-            {workExperienceList
-              .slice(3, -1)
-              .map((item: IWorkExperienceItem, idx: number) => (
-                <WorkExperienceItem
-                  key={idx}
-                  item={item}
-                  animate={animate}
-                  animateDelay={idx * 0.5}
-                />
-              ))}
-          </div>
         </div>
-        <Button onClick={() => setShowAll(showAll ? false : true)}>
-          {showAll ? 'Show Less' : 'Show More'}
-        </Button>
-      </Section>
-    </div>
+      </div>
+      <Button onClick={() => setShowAll(showAll ? false : true)}>
+        {showAll ? 'Show Less' : 'Show More'}
+      </Button>
+    </Section>
   );
 };
 

@@ -3,9 +3,11 @@
 .container {
   position: relative;
   display: flex;
+  flex-flow: column;
   align-items: center;
   justify-content: center;
-  min-height: $section-banner-height;
+  box-sizing: border-box;
+  min-height: 100vh;
   padding: $padding-section-mobile;
   background-color: $neutral;
 }
@@ -19,8 +21,8 @@
 .tallContainer {
   height: auto;
 }
-.noPaddingContainer {
-  padding: 0;
+.shortContainer {
+  min-height: 0;
 }
 .noPaddingBottomContainer {
   padding-bottom: 0;
@@ -37,6 +39,7 @@
 
 @media screen and (min-width: $breakpoint-ipad) {
   .container {
+    box-sizing: border-box;
     padding: $padding-section-desktop;
   }
   .noPaddingContainer {

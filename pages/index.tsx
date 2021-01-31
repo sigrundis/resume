@@ -8,6 +8,7 @@ import GoogleTagManager from '../components/GoogleTagManager';
 import Nav from '../components/Nav';
 import Heading from '../components/Heading';
 import About from '../components/About';
+import Career from '../components/Career';
 import Skills from '../components/Skills';
 import Expertise from '../components/Expertise';
 import Education from '../components/Education';
@@ -27,6 +28,7 @@ let Index: NextPage = (store) => {
       <Heading />
       <Expertise />
       <About />
+      <Career />
       <ImageBanner images={imageBanner1} />
       <Skills />
       <ImageBanner images={imageBanner2} />

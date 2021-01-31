@@ -8,6 +8,11 @@
   flex-flow: column;
   box-sizing: border-box;
   width: 100%;
+  &:last-child {
+    .dividor {
+      bottom: 10px;
+    }
+  }
 }
 .dividor {
   position: absolute;
@@ -25,13 +30,6 @@
     border-radius: 50%;
     left: -4px;
     top: 0;
-  }
-}
-.container {
-  &:last-child {
-    .dividor {
-      bottom: 10px;
-    }
   }
 }
 .animateUp {
@@ -63,10 +61,14 @@
   margin-left: 25px;
   padding: 12px 0;
 }
+@media screen and (min-width: $breakpoint-ipad) {
+  .year {
+    padding: 20px 0;
+  }
+}
 @media screen and (min-width: $breakpoint-laptop) {
   .container {
     flex-flow: row;
-    width: 90%;
   }
   .dividor {
     right: 50%;

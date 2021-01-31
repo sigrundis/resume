@@ -41,7 +41,7 @@
   width: 80%;
 }
 .secondProgressBars {
-  margin-top: $gutter-mobile;
+  margin: $gutter-mobile auto 60px auto;
 }
 @media screen and (min-width: $breakpoint-ipad) {
   .flexWrapper {
@@ -55,8 +55,7 @@
     width: 40%;
   }
   .secondProgressBars {
-    margin-top: 0;
-    margin-left: auto;
+    margin: 0 auto;
   }
 }
 @media screen and (min-width: $breakpoint-laptop) {

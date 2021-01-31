@@ -1,13 +1,12 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useRef, useState, useEffect, ReactNode } from 'react';
 import classNames from 'classnames';
 import useIsInViewport from 'use-is-in-viewport';
+import gsap from 'gsap';
 import Separator from '../Separator';
 import styles from './Headline.module.scss';
 
 const {
   container,
-  containerWithAnimation,
-  animateHeadline,
   whiteContainer,
   noPaddingContainer,
   h2,
@@ -20,7 +19,7 @@ interface IHeadlineProps {
   subtitle?: string | ReactNode;
   white?: boolean;
   noPadding?: boolean;
-  animateUp?: boolean;
+  onAnimateComplete?: () => any;
 }
 
 const Headline = ({
@@ -28,23 +27,49 @@ const Headline = ({
   subtitle,
   white,
   noPadding,
-  animateUp,
+  onAnimateComplete,
 }: IHeadlineProps) => {
-  const [isInViewport, targetRef] = useIsInViewport();
-  const [animate, setAnimate] = useState<boolean>(false);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const [isInViewport, wrappedTargetRef] = useIsInViewport({
+    threshold: 50,
+    target: targetRef,
+  });
+  const [animationCompleted, setAnimationCompleted] = useState<boolean>(false);
 
   useEffect(() => {
-    if (isInViewport) {
-      setAnimate(true);
+    const containerElement = targetRef.current;
+
+    if (containerElement && !animationCompleted) {
+      const elementList = containerElement.childNodes;
+
+      if (isInViewport) {
+        const timeline = gsap.timeline({
+          onComplete: () => {
+            if (onAnimateComplete) {
+              onAnimateComplete();
+            }
+            setAnimationCompleted(true);
+          },
+        });
+        timeline.to(elementList, {
+          opacity: 1,
+          stagger: 0.2,
+          duration: 0.8,
+          ease: 'Power3.inOut',
+          transformOrigin: '0 50%',
+          rotationX: 0,
+          y: 0,
+        });
+      } else {
+        gsap.set(elementList, { opacity: 0, rotationX: -80, y: 50 });
+      }
     }
   }, [isInViewport]);
 
   return (
     <div
-      ref={targetRef}
+      ref={wrappedTargetRef}
       className={classNames(container, {
-        [containerWithAnimation]: animateUp,
-        [animateHeadline]: animate && animateUp,
         [whiteContainer]: white,
         [noPaddingContainer]: noPadding,
       })}

@@ -7,24 +7,17 @@ const {
   textWrapper,
   title: titleStyle,
   description: descriptionStyle,
-  startAnimation,
 } = styles;
 
 interface IExpertiseProps {
   title: string;
   description: string;
   icon: any;
-  animation: boolean;
 }
 
-const ExpertiseItem = ({
-  title,
-  description,
-  icon,
-  animation,
-}: IExpertiseProps) => {
+const ExpertiseItem = ({ title, description, icon }: IExpertiseProps) => {
   return (
-    <div className={classNames(container, { [startAnimation]: animation })}>
+    <div className={classNames(container)}>
       {icon}
       <div className={textWrapper}>
         <div className={titleStyle}>{title}</div>

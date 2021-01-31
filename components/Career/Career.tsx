@@ -8,6 +8,7 @@ import { passionList, passionImages } from '../../data/about';
 import Separator from '../Separator';
 import Section from '../Section';
 import styles from './Career.module.scss';
+import IProggressiveImg from '../../typescript/Interfaces/IProgressiveImage';
 
 const {
   flexWrapper,
@@ -18,7 +19,6 @@ const {
   content: contentStyle,
   title,
   passionTitle,
-  swipeableViewsStyle,
   paragraph: paragraphStyle,
   arrows,
   arrow,
@@ -33,8 +33,9 @@ const Career = () => {
   const passionImgRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState<number>(0);
   const [fadeIn, setFadeIn] = useState<boolean>(false);
-  const [isInViewport, content] = useIsInViewport({ threshold: 20 });
+  const [isInViewport, content] = useIsInViewport({ threshold: 50 });
   const [animateArrowRight, setAnimateArrowRight] = useState<boolean>(false);
+  const [animateInCompleted, setAnimateInCompleted] = useState<boolean>(false);
   const isLeftDisabled = index < 1;
   const isRightDisabled = index + 1 === passionList.length;
   let z = 5;
@@ -54,27 +55,31 @@ const Career = () => {
   }, [fadeIn]);
 
   useEffect(() => {
-    if (isInViewport) {
-      const timeline = gsap.timeline({
-        onComplete: () => setAnimateArrowRight(true),
-      });
-
-      timeline
-        .set(images, {
-          delay: 0.4,
-          x: '-500%',
-          rotation: () => {
-            return 46 * Math.random() - 23;
-          },
-        })
-        .to(images, { opacity: 1, x: 0, stagger: -0.4 })
-        .to(images, {
-          rotation: () => {
-            return 16 * Math.random() - 8;
+    if (!animateInCompleted) {
+      if (isInViewport) {
+        const timeline = gsap.timeline({
+          onComplete: () => {
+            setAnimateInCompleted(true);
+            setAnimateArrowRight(true);
           },
         });
-    } else {
-      gsap.set(images, { opacity: 0 });
+
+        timeline
+          .set(images, {
+            x: '-500%',
+            rotation: () => {
+              return 46 * Math.random() - 23;
+            },
+          })
+          .to(images, { opacity: 1, x: 0, stagger: -0.4 })
+          .to(images, {
+            rotation: () => {
+              return 16 * Math.random() - 8;
+            },
+          });
+      } else {
+        gsap.set(images, { opacity: 0 });
+      }
     }
   }, [isInViewport]);
 
@@ -140,10 +145,11 @@ const Career = () => {
   const renderPassionImages = () => {
     return (
       <div ref={passionImgRef} className={imagePile}>
-        {passionImages.map((passionImage) => {
+        {passionImages.map((passionImage: IProggressiveImg, idx: number) => {
           z = z - 1;
           return (
             <div
+              key={`passionImg-${idx}`}
               className={classNames(image)}
               style={{
                 backgroundImage: `url(${passionImage.highQualitySrc})`,
