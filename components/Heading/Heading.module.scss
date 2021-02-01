@@ -91,7 +91,9 @@
   position: relative;
   height: 360px;
   width: 300px;
-  margin: 0 auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: auto;
 }
 .animateImageWrapper {
   visibility: visible;
