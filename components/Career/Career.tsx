@@ -67,7 +67,11 @@ const Career = () => {
             setAnimateInCompleted(true);
             arrowTimeline.fromTo(
               arrowRightRef?.current,
-              { x: 15, duration: 0.7, ease: 'Power3.out' },
+              {
+                x: 15,
+                duration: 0.7,
+                ease: 'Power3.out',
+              },
               { x: 0, ease: 'Power3.out' }
             );
           },

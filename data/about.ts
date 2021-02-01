@@ -16,7 +16,7 @@ export const passionList: IPassion[] = [
       'Since 2017 I have been working as a software developer for a company called Dohop, ' +
       'mainly working on building flight search engines that connect itineraries and allows customers to book them in one place easily. ' +
       'From there I have experience in developing both B2C and B2B software solutions, as well as internal systems for the company. ' +
-      'My main focus there is developing web applications ' +
+      'My main focus is developing web applications ' +
       'where my strengths lies in the front-end implementation besides working with data analytics and reporting. ',
   },
   {
