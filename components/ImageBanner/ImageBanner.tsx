@@ -7,9 +7,10 @@ const { container, tallContainer, image, oneImage } = styles;
 interface IImageBanner {
   images: string[];
   tall?: boolean;
+  children?: any;
 }
 
-const ImageBanner = ({ images, tall }: IImageBanner) => {
+const ImageBanner = ({ images, tall, children }: IImageBanner) => {
   return (
     <div className={classNames(container, { [tallContainer]: tall })}>
       {images.map((src: string, idx: number) => (

@@ -9,7 +9,7 @@
   width: 100vw;
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 40px;
+  padding: 40px 40px 120px 40px;
 }
 .backgroundImage {
   position: absolute;
@@ -31,33 +31,18 @@
 .flexWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 .content {
-  opacity: 0;
+  position: relative;
   z-index: 1;
   padding: $gutter-mobile;
-  margin-bottom: $gutter-mobile;
   box-sizing: border-box;
   min-width: 100vw;
-}
-.animateContent {
-  animation: slideUpFar 1s, fadeIn 1s;
-  animation-fill-mode: forwards;
 }
 .h1 {
   position: relative;
   padding: $gutter-mobile 0;
   color: $neutral;
-  &::after {
-    content: '';
-    position: absolute;
-    height: 2px;
-    width: 200px;
-    background-color: $sky-darker;
-    bottom: 0;
-    left: 0;
-  }
 }
 .h2 {
   display: inline-block;
@@ -73,10 +58,9 @@
 }
 .animateWorkTitle {
   border-right: 2px solid rgba(255, 255, 255, 0.75);
-  animation: typewriter 2.5s steps(44) 1s 1 normal both,
-    blinkTextCursor 600ms steps(44) 8 normal;
+  animation: typewriter 2.5s steps(44) 1 normal both,
+    blinkTextCursor 0.6s steps(44) 6 normal;
   animation-fill-mode: forwards;
-  animation-delay: 0.8s;
 }
 .h3 {
   text-transform: uppercase;
@@ -87,17 +71,12 @@
   color: $sky-darker;
 }
 .imageWrapper {
-  visibility: hidden;
   position: relative;
   height: 360px;
   width: 300px;
   flex-grow: 0;
   flex-shrink: 0;
-  margin: auto;
-}
-.animateImageWrapper {
-  visibility: visible;
-  animation: slideFromRightFar 1.2s;
+  margin: 0 auto;
 }
 .box {
   position: absolute;
@@ -119,6 +98,54 @@
   left: 0;
   border: solid 12px $neutral;
 }
+.buttonDesktopWrapper {
+  display: none;
+}
+.buttonMobileWrapper {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button {
+  font-weight: $font-weight-medium;
+  text-transform: uppercase;
+  margin: 0 20px;
+  &:first-child {
+    border: solid 2px $sky-darker;
+    &:hover {
+      border-color: $sky;
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .h1 {
+    font-size: 32px;
+  }
+  .h2 {
+    font-size: $font-size-mobile-l;
+  }
+  .h3 {
+    font-size: $font-size-l;
+  }
+  .imageWrapper {
+    width: 255px;
+    height: 310px;
+  }
+  .box {
+    width: 200px;
+    height: 260px;
+  }
+  .imageLoaded {
+    width: 200px;
+    height: 260px;
+  }
+  .button {
+    font-size: $font-size-s;
+  }
+}
 @media screen and (min-width: $breakpoint-ipad) {
   .container {
     padding: 120px;
@@ -131,6 +158,7 @@
   }
   .content {
     padding-right: 40px;
+    padding-bottom: 80px;
     box-sizing: border-box;
     min-width: 400px;
   }
@@ -142,6 +170,20 @@
   }
   .h3 {
     font-size: $font-size-xl;
+  }
+  .buttonMobileWrapper {
+    display: none;
+  }
+  .buttonDesktopWrapper {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 0;
+    left: 0;
+  }
+  .button {
+    font-size: 18px;
   }
 }
 @media screen and (min-width: $breakpoint-laptop) {

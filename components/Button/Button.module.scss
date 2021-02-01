@@ -17,3 +17,12 @@
     background-color: $sky;
   }
 }
+.outlinedButton {
+  background-color: transparent;
+  color: $sky-darker;
+  border: solid 2px $sky-darker;
+  font-weight: $font-weight-medium;
+  &:hover {
+    background-color: rgba(174, 195, 243, 0.3);
+  }
+}

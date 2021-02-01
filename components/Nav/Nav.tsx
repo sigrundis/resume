@@ -4,8 +4,7 @@ import INavItem from '../../typescript/Interfaces/INavItem';
 import { navItemsList } from '../../data/nav';
 import Hamburger from '../Hamburger';
 import styles from './Nav.module.scss';
-import ExpandWithAnimation from '../ExpandWithAnimation';
-const { icon, nav, navMobileOpen, ul, mobileUl, li, selectedLi } = styles;
+const { nav, navMobileOpen, ul, mobileUl, li, selectedLi } = styles;
 
 interface INav {
   selected?: string;

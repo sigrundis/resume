@@ -9,9 +9,7 @@ interface ISeparator {
 }
 
 const Separator = ({ centered, className }: ISeparator) => (
-  <div
-    className={classNames(separator, className, { [middle]: centered })}
-  ></div>
+  <div className={classNames(separator, className, { [middle]: centered })} />
 );
 
 export default Separator;
