@@ -18,8 +18,8 @@
 .dividor {
   position: absolute;
   width: 1px;
-  top: 15px;
-  bottom: -15px;
+  top: 18px;
+  bottom: -18px;
   background-color: $neutral;
   opacity: 0;
   &::after {
@@ -63,6 +63,10 @@
   padding: 12px 0;
 }
 @media screen and (min-width: $breakpoint-ipad) {
+  .dividor {
+    top: 26px;
+    bottom: -26px;
+  }
   .container {
     &:last-child {
       margin-bottom: 0;
@@ -77,6 +81,8 @@
     flex-flow: row;
   }
   .dividor {
+    top: 16px;
+    bottom: -16px;
     right: 50%;
   }
   .content {

@@ -34,6 +34,7 @@ const {
 
 const Career = () => {
   const passionImgRef = useRef<HTMLDivElement>(null);
+  const arrowRightRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState<number>(0);
   const [fadeIn, setFadeIn] = useState<boolean>(false);
   const [isInViewport, content] = useIsInViewport({ threshold: 50 });
@@ -60,10 +61,15 @@ const Career = () => {
   useEffect(() => {
     if (!animateInCompleted) {
       if (isInViewport) {
+        const arrowTimeline = gsap.timeline({ repeat: 3 });
         const timeline = gsap.timeline({
           onComplete: () => {
             setAnimateInCompleted(true);
-            setAnimateArrowRight(true);
+            arrowTimeline.fromTo(
+              arrowRightRef?.current,
+              { x: 15, duration: 0.7, ease: 'Power3.out' },
+              { x: 0, ease: 'Power3.out' }
+            );
           },
         });
 
@@ -216,6 +222,7 @@ const Career = () => {
               }
             >
               <div
+                ref={arrowRightRef}
                 className={classNames(arrow, arrowRight, {
                   [arrowRightAttention]: animateArrowRight && !isRightDisabled,
                   [arrowDisabled]: isRightDisabled,
