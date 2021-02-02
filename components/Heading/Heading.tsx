@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import { navItems } from '../../data/nav';
@@ -10,8 +11,11 @@ import Separator from '../Separator';
 const {
   container,
   backgroundImage,
+  alternativeBackgroundImage,
+  backgroundImageLoaded,
   overlay,
   content,
+  contentToAnimateUp,
   animateContent,
   h1,
   h2,
@@ -22,8 +26,8 @@ const {
   button,
   flexWrapper,
   imageWrapper,
-  imageLoaded,
   box,
+  imageInnerWrapper,
   image,
 } = styles;
 
@@ -31,18 +35,23 @@ const Heading = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
   const [typingAnimation, setTypingAnimation] = useState<boolean>(false);
-  const { src, loaded: backgroundLoaded } = useProgressiveImg(
-    '/img/code2_tiny.jpg',
-    '/img/code2.jpg'
+  const tinyBackground = '/img/code2_tiny.jpg';
+  const qualityBackground = '/img/code2.jpg';
+  const tinyPortrait = '/img/portrait_tiny.jpg';
+  const qualityPortrait = '/img/portrait.jpg';
+  const { loaded: backgroundLoaded } = useProgressiveImg(
+    tinyBackground,
+    qualityBackground
   );
   const { loaded: portraitLoaded } = useProgressiveImg(
-    '/img/portrait_tiny.jpg',
-    '/img/portrait.jpg'
+    tinyPortrait,
+    qualityPortrait
   );
 
   useEffect(() => {
     if (contentRef?.current && imgRef?.current) {
       let contentNodes = contentRef?.current?.children;
+
       if (backgroundLoaded && portraitLoaded) {
         const btnTimeline = gsap.timeline({ paused: true });
         const timeline = gsap.timeline({
@@ -51,27 +60,20 @@ const Heading = () => {
             btnTimeline.play();
           },
         });
+        const animateFromSide = {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          ease: 'Power3.inOut',
+        };
+        const START_ID = 'start';
 
         timeline
-          .to(
-            imgRef.current,
-            {
-              opacity: 1,
-              x: 0,
-              duration: 1,
-              ease: 'Power3.inOut',
-            },
-            'start'
-          )
+          .to(imgRef.current, animateFromSide, START_ID)
           .to(
             ['#button-wrapper-mobile', '#button-wrapper-desktop'],
-            {
-              opacity: 1,
-              x: 0,
-              duration: 1,
-              ease: 'Power3.inOut',
-            },
-            'start'
+            animateFromSide,
+            START_ID
           )
           .to(contentNodes, {
             opacity: 1,
@@ -123,13 +125,22 @@ const Heading = () => {
 
   return (
     <div className={container}>
-      <img src={src} className={backgroundImage} />
+      <div className={alternativeBackgroundImage} />
+      {backgroundLoaded && (
+        <Image
+          src={qualityBackground}
+          className={classNames(backgroundImage, {
+            [backgroundImageLoaded]: backgroundLoaded,
+          })}
+          layout="fill"
+        />
+      )}
       <div className={overlay} />
       <div className={flexWrapper}>
         <div
           className={classNames(content, { [animateContent]: portraitLoaded })}
         >
-          <div ref={contentRef}>
+          <div className={contentToAnimateUp} ref={contentRef}>
             <div className={h3}>Hi, I'm</div>
             <h1 className={h1}>Sigrún Dís Hauksdóttir</h1>
             <Separator />
@@ -145,9 +156,9 @@ const Heading = () => {
         </div>
         <div ref={imgRef} className={classNames(imageWrapper)}>
           <div className={box}></div>
-          <div
-            className={classNames(image, { [imageLoaded]: portraitLoaded })}
-          ></div>
+          <div className={imageInnerWrapper}>
+            <Image src={qualityPortrait} className={image} layout="fill" />
+          </div>
         </div>
         {renderButtons(buttonMobileWrapper, true)}
       </div>

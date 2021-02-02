@@ -1,14 +1,16 @@
 @import '../../css/variables.scss';
+@import '../../css/mixin.scss';
 
 .container {
   display: flex;
   flex-wrap: wrap;
   height: 450px;
 }
+.imageWrapper {
+  position: relative;
+}
 .image {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  @include nextJSImage();
 }
 @media screen and (min-width: $breakpoint-ipad) {
   .container {

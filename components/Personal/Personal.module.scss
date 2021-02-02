@@ -1,4 +1,5 @@
 @import '../../css/variables.scss';
+@import '../../css/mixin.scss';
 
 .container {
   position: relative;
@@ -24,15 +25,16 @@
   flex-shrink: 0;
   margin: auto;
 }
-.portrait {
+.portraitWrapper {
   position: absolute;
-  background: url('/img/blue.jpg') no-repeat top center;
-  background-size: cover;
   height: 300px;
   width: 240px;
-  left: 0;
   bottom: 0;
-  border: solid white 12px;
+  left: 0;
+  border: solid 12px $white;
+}
+.portrait {
+  @include nextJSImage();
 }
 .background {
   position: absolute;
@@ -53,7 +55,7 @@
     flex-basis: 430px;
     margin-left: 120px;
   }
-  .portrait {
+  .portraitWrapper {
     height: 400px;
     width: 360px;
   }

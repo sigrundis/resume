@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
 import useIsInViewport from 'use-is-in-viewport';
@@ -15,6 +16,7 @@ const {
   item,
   slides,
   imagePile,
+  imageWrapper,
   image,
   content: contentStyle,
   title,
@@ -29,7 +31,6 @@ const {
   arrowRight,
   arrowRightAttention,
   arrowDisabled,
-  fadeInAnimation,
 } = styles;
 
 const Career = () => {
@@ -101,13 +102,29 @@ const Career = () => {
     const current = images[index];
     const imageToShow = images[updatedIndex];
     z = Number(gsap.getProperty(current, 'zIndex'));
-
     let direction = '150%';
     let midAngle = 15;
     if (Math.random() > 0.5) {
       direction = '-150%';
       midAngle = -15;
     }
+    const firstSet = { x: 0 };
+    const firstTo = {
+      x: direction,
+      rotation: midAngle,
+      rotationY: 90,
+      scale: 1.1,
+    };
+    const secondTo = {
+      x: 0,
+      y: 0,
+      rotation: () => {
+        return randomRotationAngle;
+      },
+      rotationY: 0,
+      scale: 1,
+    };
+
     const flipTimeline = gsap.timeline({
       onStart: () => setIndex(updatedIndex),
     });
@@ -115,43 +132,18 @@ const Career = () => {
     // If we are sliding forwards we take the top image and bring it at the bottom of the pile.
     if (slidingForwards) {
       flipTimeline
-        .set(current, { x: 0 })
-        .to(current, {
-          x: direction,
-          rotation: midAngle,
-          rotationY: 90,
-          scale: 1.1,
-        })
+        .set(current, firstSet)
+        .to(current, firstTo)
         .set(current, { zIndex: 1 })
-        .to(current, {
-          x: 0,
-          y: 0,
-          rotation: () => {
-            return randomRotationAngle;
-          },
-          rotationY: 0,
-          scale: 1,
-        });
+        .to(current, secondTo);
     }
     // If we are moving backwards, we pull the image we want to show and bring it to the top of the pile.
     else {
       flipTimeline
-        .set(imageToShow, { x: 0 })
-        .to(imageToShow, {
-          x: direction,
-          rotation: midAngle,
-          rotationY: 90,
-          scale: 1.1,
-        })
+        .set(imageToShow, firstSet)
+        .to(imageToShow, firstTo)
         .set(imageToShow, { zIndex: z + 1 })
-        .to(imageToShow, {
-          x: 0,
-          rotation: () => {
-            return randomRotationAngle;
-          },
-          rotationY: 0,
-          scale: 1,
-        });
+        .to(imageToShow, secondTo);
     }
   };
 
@@ -163,12 +155,17 @@ const Career = () => {
           return (
             <div
               key={`passionImg-${idx}`}
-              className={classNames(image)}
+              className={imageWrapper}
               style={{
-                backgroundImage: `url(${passionImage.highQualitySrc})`,
                 zIndex: z,
               }}
-            />
+            >
+              <Image
+                className={image}
+                src={passionImage.highQualitySrc}
+                layout="fill"
+              />
+            </div>
           );
         })}
       </div>

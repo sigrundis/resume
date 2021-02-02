@@ -1,16 +1,17 @@
 @import '../../css/variables.scss';
+@import '../../css/mixin.scss';
 
 .container {
   display: flex;
   align-items: center;
   position: relative;
   height: 450px;
-  background-image: url('/img/speak.jpeg');
-  background-repeat: no-repeat;
-  background-position: center right -200px;
-  background-size: cover;
+
   box-sizing: border-box;
   padding: $padding-section-mobile;
+}
+.image {
+  @include nextJSImage();
 }
 .overlay {
   position: absolute;

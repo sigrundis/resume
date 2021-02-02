@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import Image from 'next/image';
 import useIsInViewport from 'use-is-in-viewport';
 import gsap from 'gsap';
 import Separator from '../Separator';
@@ -8,6 +9,7 @@ const {
   container,
   textWrapper,
   imageWrapper,
+  portraitWrapper,
   portrait,
   background,
   paragraph,
@@ -45,7 +47,9 @@ const Personal = ({ startAnimate }: IPersonal) => {
       <div ref={targetRef} className={container}>
         <div className={imageWrapper}>
           <div className={background}></div>
-          <div className={portrait}></div>
+          <div className={portraitWrapper}>
+            <Image className={portrait} src="/img/blue.jpg" layout="fill" />
+          </div>
         </div>
         <div ref={textWrapperRef} className={textWrapper}>
           <h3 className={h3}>On the personal notes</h3>
