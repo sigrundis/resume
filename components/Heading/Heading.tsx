@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 import gsap from 'gsap';
+import imagesLoaded from 'imagesloaded';
 import { navItems } from '../../data/nav';
 import useProgressiveImg from '../../hooks/useProgressiveImg';
 import Button from '../Button';
@@ -33,13 +34,17 @@ const {
 
 const Heading = () => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const imgRef = useRef<HTMLDivElement>(null);
+  const imageWrapperRef = useRef<HTMLDivElement>(null);
   let backgroundImg: HTMLImageElement;
   let portraitImg: HTMLImageElement;
   const [typingAnimation, setTypingAnimation] = useState<boolean>(false);
   const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
   const [portraitLoaded, setPortraitLoaded] = useState<boolean>(false);
 
+  /**
+   * The Next.js Image component does not forward ref down to the img element (hopefully changes in the future).
+   * Therefore we use id to generate the image elements.
+   */
   useEffect(() => {
     if (typeof window !== 'undefined') {
       backgroundImg = document.getElementById(
@@ -53,26 +58,30 @@ const Heading = () => {
 
   /**
    * In case backgroundImg is stored in cache, onLoad might not trigger.
-   * Then we set the state backgroundLoaded to true when .complete is true.
+   * Therefore we use imagesLoaded func to detect when the background image has loaded.
    */
   useEffect(() => {
-    if (backgroundImg) {
-      setBackgroundLoaded(backgroundImg.complete);
+    if (backgroundImg && !backgroundLoaded) {
+      imagesLoaded(backgroundImg, () => {
+        setBackgroundLoaded(true);
+      });
     }
   }, [backgroundImg]);
 
   /**
    * In case portraitImg is stored in cache, onLoad might not trigger.
-   * Then we set the state portraitLoaded to true when .complete is true.
+   * Therefore we use imagesLoaded func to detect when the portrait image has loaded.
    */
   useEffect(() => {
-    if (portraitImg) {
-      setPortraitLoaded(portraitImg.complete);
+    if (portraitImg && !portraitLoaded) {
+      imagesLoaded(portraitImg, () => {
+        setPortraitLoaded(true);
+      });
     }
   }, [portraitImg]);
 
   useEffect(() => {
-    if (contentRef?.current && imgRef?.current) {
+    if (contentRef?.current && imageWrapperRef?.current) {
       let contentNodes = contentRef?.current?.children;
 
       if (backgroundLoaded && portraitLoaded) {
@@ -84,7 +93,6 @@ const Heading = () => {
           },
         });
         const animateFromSide = {
-          delay: 0.6,
           opacity: 1,
           x: 0,
           duration: 1,
@@ -93,7 +101,7 @@ const Heading = () => {
         const START_ID = 'start';
 
         timeline
-          .to(imgRef.current, animateFromSide, START_ID)
+          .to(imageWrapperRef.current, animateFromSide, START_ID)
           .to(
             ['#button-wrapper-mobile', '#button-wrapper-desktop'],
             animateFromSide,
@@ -111,7 +119,7 @@ const Heading = () => {
       } else {
         gsap.set(contentNodes, { opacity: 0, y: 200 });
         gsap.set(contentNodes[0], { rotationX: -50 });
-        gsap.set(imgRef.current, { opacity: 0, x: 1000 });
+        gsap.set(imageWrapperRef.current, { opacity: 0, x: 1000 });
         gsap.set(['#button-wrapper-mobile', '#button-wrapper-desktop'], {
           opacity: 0,
           x: -1000,
@@ -153,7 +161,6 @@ const Heading = () => {
       <div className={alternativeBackgroundImage} />
       <Image
         id="heading-background-image"
-        onLoad={() => setBackgroundLoaded(true)}
         src={'/img/code2.jpg'}
         className={classNames(backgroundImage, {
           [backgroundImageLoaded]: backgroundLoaded,
@@ -180,7 +187,7 @@ const Heading = () => {
           </h2>
           {renderButtons(buttonDesktopWrapper, false)}
         </div>
-        <div ref={imgRef} className={classNames(imageWrapper)}>
+        <div ref={imageWrapperRef} className={classNames(imageWrapper)}>
           <div className={box}></div>
           <div className={imageInnerWrapper}>
             <Image
@@ -188,7 +195,6 @@ const Heading = () => {
               src={'/img/portrait.jpg'}
               className={image}
               layout="fill"
-              onLoad={() => setPortraitLoaded(true)}
               alt="Portrait Image"
             />
           </div>

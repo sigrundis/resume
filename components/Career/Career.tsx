@@ -163,7 +163,6 @@ const Career = () => {
                 className={image}
                 src={passionImage.highQualitySrc}
                 layout="fill"
-                priority
               />
             </div>
           );

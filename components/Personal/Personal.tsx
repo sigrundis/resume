@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import useIsInViewport from 'use-is-in-viewport';
+import imagesLoaded from 'imagesloaded';
 import gsap from 'gsap';
 import Separator from '../Separator';
 import styles from './Personal.module.scss';
@@ -42,21 +43,25 @@ const Personal = ({ startAnimate }: IPersonal) => {
 
   /**
    * In case backgroundImg is stored in cache, onLoad might not trigger.
-   * Then we set the state backgroundLoaded to true when .complete is true.
+   * Therefore we use imagesLoaded func to detect when the background image has loaded.
    */
   useEffect(() => {
-    if (backgroundImg) {
-      setBackgroundLoaded(backgroundImg.complete);
+    if (backgroundImg && !backgroundLoaded) {
+      imagesLoaded(backgroundImg, () => {
+        setBackgroundLoaded(true);
+      });
     }
   }, [backgroundImg]);
 
   /**
    * In case portraitImg is stored in cache, onLoad might not trigger.
-   * Then we set the state portraitLoaded to true when .complete is true.
+   * Therefore we use imagesLoaded func to detect when the portrait image has loaded.
    */
   useEffect(() => {
-    if (portraitImg) {
-      setPortraitLoaded(portraitImg.complete);
+    if (portraitImg && !portraitLoaded) {
+      imagesLoaded(portraitImg, () => {
+        setPortraitLoaded(true);
+      });
     }
   }, [portraitImg]);
 
@@ -111,7 +116,6 @@ const Personal = ({ startAnimate }: IPersonal) => {
               className={background}
               src="/img/white-bridge.jpg"
               layout="fill"
-              onLoad={() => setBackgroundLoaded(true)}
             />
           </div>
           <div className={portraitWrapper}>
@@ -120,7 +124,6 @@ const Personal = ({ startAnimate }: IPersonal) => {
               className={portrait}
               src="/img/blue.jpg"
               layout="fill"
-              onLoad={() => setPortraitLoaded(true)}
             />
           </div>
         </div>
