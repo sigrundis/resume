@@ -3,7 +3,7 @@ import FontFaceObserver from 'fontfaceobserver';
 const Fonts = () => {
   const link = document.createElement('link');
   link.href =
-    'https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700';
+    'https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700&display=swap';
   link.rel = 'stylesheet';
 
   document.head.appendChild(link);

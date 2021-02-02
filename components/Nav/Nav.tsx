@@ -26,7 +26,11 @@ const Nav = ({ selected }: INav) => {
   };
 
   return (
-    <nav className={classNames(nav, { [navMobileOpen]: isMobileNavOpen })}>
+    <nav
+      className={classNames(nav, {
+        [navMobileOpen]: isMobileNavOpen,
+      })}
+    >
       <Hamburger isOpen={isMobileNavOpen} onClick={onClickHamburger}>
         <ul className={mobileUl}>
           {navItemsList.map((item: INavItem, idx: number) => (
