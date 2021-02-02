@@ -20,6 +20,12 @@ const WebsiteHead = () => (
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} key="ogdesc" />
     <title>{pageTitle}</title>
+    <link
+      rel="preload"
+      href="/fonts/montserrat.woff2"
+      as="font"
+      type="font/woff2"
+    />
   </Head>
 );
 
