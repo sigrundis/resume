@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import classNames from 'classnames';
 import SwipeableViews from 'react-swipeable-views';
+import imagesLoaded from 'imagesloaded';
 import useIsInViewport from 'use-is-in-viewport';
 import gsap from 'gsap';
 import IPassion from '../../typescript/Interfaces/IPassion';
@@ -29,81 +30,78 @@ const {
   arrow,
   arrowLeft,
   arrowRight,
-  arrowRightAttention,
   arrowDisabled,
 } = styles;
 
 const Career = () => {
   const passionImgRef = useRef<HTMLDivElement>(null);
   const arrowRightRef = useRef<HTMLDivElement>(null);
-  const [index, setIndex] = useState<number>(0);
-  const [fadeIn, setFadeIn] = useState<boolean>(false);
-  const [isInViewport, content] = useIsInViewport({ threshold: 50 });
-  const [animateArrowRight, setAnimateArrowRight] = useState<boolean>(false);
+
   const [animateInCompleted, setAnimateInCompleted] = useState<boolean>(false);
+  const [allImagesLoaded, setAllImagesLoaded] = useState<boolean>(false);
+  const [index, setIndex] = useState<number>(0);
+  const [isInViewport, content] = useIsInViewport({ threshold: 50 });
+
   const isLeftDisabled = index < 1;
   const isRightDisabled = index + 1 === passionList.length;
   let z = 5;
   const randomRotationAngle = 16 * Math.random() - 8;
-  const images = passionImgRef?.current?.childNodes;
+  const imageWrappers: NodeListOf<ChildNode> =
+    passionImgRef?.current?.childNodes;
+  const imgList: HTMLCollectionOf<HTMLImageElement> = passionImgRef?.current?.getElementsByTagName(
+    'img'
+  );
 
   useEffect(() => {
-    setFadeIn(true);
-  }, [index]);
-
-  useEffect(() => {
-    if (fadeIn) {
-      setTimeout(() => {
-        setFadeIn(false);
-      }, 800);
+    if (imgList && !allImagesLoaded) {
+      imagesLoaded(imgList, () => {
+        setAllImagesLoaded(true);
+      });
     }
-  }, [fadeIn]);
+  }, [imgList]);
 
   useEffect(() => {
-    if (!animateInCompleted) {
-      if (isInViewport) {
-        const arrowTimeline = gsap.timeline({ repeat: 3 });
-        const timeline = gsap.timeline({
-          onComplete: () => {
-            setAnimateInCompleted(true);
-            arrowTimeline.fromTo(
-              arrowRightRef?.current,
-              {
-                x: 15,
-                duration: 0.7,
-                ease: 'Power3.out',
-              },
-              { x: 0, ease: 'Power3.out' }
-            );
+    if (!animateInCompleted && isInViewport && allImagesLoaded) {
+      const arrowTimeline = gsap.timeline({ repeat: 3 });
+      const timeline = gsap.timeline({
+        onComplete: () => {
+          setAnimateInCompleted(true);
+          arrowTimeline.fromTo(
+            arrowRightRef?.current,
+            {
+              x: 15,
+              duration: 0.7,
+              ease: 'Power3.out',
+            },
+            { x: 0, ease: 'Power3.out' }
+          );
+        },
+      });
+
+      timeline
+        .set(imageWrappers, {
+          x: '-500%',
+          rotation: () => {
+            return 46 * Math.random() - 23;
+          },
+        })
+        .to(imageWrappers, { opacity: 1, x: 0, stagger: -0.4 })
+        .to(imageWrappers, {
+          rotation: () => {
+            return 16 * Math.random() - 8;
           },
         });
-
-        timeline
-          .set(images, {
-            x: '-500%',
-            rotation: () => {
-              return 46 * Math.random() - 23;
-            },
-          })
-          .to(images, { opacity: 1, x: 0, stagger: -0.4 })
-          .to(images, {
-            rotation: () => {
-              return 16 * Math.random() - 8;
-            },
-          });
-      } else {
-        gsap.set(images, { opacity: 0 });
-      }
     }
-  }, [isInViewport]);
+  }, [isInViewport, allImagesLoaded]);
 
-  const onToggleSlide = (updatedIndex) => {
+  const onToggleSlide = (updatedIndex: number) => {
     const slidingForwards = updatedIndex > index;
-    const current = images[index];
-    const imageToShow = images[updatedIndex];
+    const current = imageWrappers[index];
+    const imageToShow = imageWrappers[updatedIndex];
     z = Number(gsap.getProperty(current, 'zIndex'));
     let direction = '150%';
     let midAngle = 15;
+
     if (Math.random() > 0.5) {
       direction = '-150%';
       midAngle = -15;
@@ -152,6 +150,7 @@ const Career = () => {
       <div ref={passionImgRef} className={imagePile}>
         {passionImages.map((passionImage: IProggressiveImg, idx: number) => {
           z = z - 1;
+
           return (
             <div
               key={`passionImg-${idx}`}
@@ -226,7 +225,6 @@ const Career = () => {
               <div
                 ref={arrowRightRef}
                 className={classNames(arrow, arrowRight, {
-                  [arrowRightAttention]: animateArrowRight && !isRightDisabled,
                   [arrowDisabled]: isRightDisabled,
                 })}
               />

@@ -109,7 +109,8 @@ const Heading = () => {
             transformOrigin: '0 50%',
           });
       } else {
-        gsap.set(contentNodes, { opacity: 0, rotationX: -50, y: 200 });
+        gsap.set(contentNodes, { opacity: 0, y: 200 });
+        gsap.set(contentNodes[0], { rotationX: -50 });
         gsap.set(imgRef.current, { opacity: 0, x: 1000 });
         gsap.set(['#button-wrapper-mobile', '#button-wrapper-desktop'], {
           opacity: 0,

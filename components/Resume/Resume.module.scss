@@ -13,6 +13,7 @@
 }
 .image {
   @include nextJSImage();
+  object-position: -610px;
   animation: fadein 1.5s;
 }
 .overlay {
@@ -41,9 +42,18 @@
     background-color: rgba(174, 195, 243, 0.3);
   }
 }
+@media screen and (min-width: 560px) {
+  .image {
+    object-position: -400px;
+  }
+}
+
 @media screen and (min-width: $breakpoint-ipad) {
   .container {
     height: 400px;
     background-position: center center;
+  }
+  .image {
+    object-position: center;
   }
 }

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
+import imagesLoaded from 'imagesloaded';
+import gsap from 'gsap';
 import Image from 'next/image';
 import styles from './ImageBanner.module.scss';
 
@@ -11,8 +13,41 @@ interface IImageBanner {
 }
 
 const ImageBanner = ({ images, tall }: IImageBanner) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const [allImagesLoaded, setAllImagesLoaded] = useState<boolean>(false);
+
+  const imageWrappers: NodeListOf<ChildNode> =
+    containerRef?.current?.childNodes;
+  const imgList: HTMLCollectionOf<HTMLImageElement> = containerRef?.current?.getElementsByTagName(
+    'img'
+  );
+
+  useEffect(() => {
+    if (allImagesLoaded) {
+      const timeline = gsap.timeline();
+      timeline.to(imageWrappers, {
+        opacity: 1,
+        stagger: 0.6,
+        duration: 1,
+        ease: 'Power3.out',
+      });
+    }
+  }, [allImagesLoaded]);
+
+  useEffect(() => {
+    if (imgList && !allImagesLoaded) {
+      imagesLoaded(imgList, () => {
+        setAllImagesLoaded(true);
+      });
+    }
+  }, [imgList]);
+
   return (
-    <div className={classNames(container, { [tallContainer]: tall })}>
+    <div
+      ref={containerRef}
+      className={classNames(container, { [tallContainer]: tall })}
+    >
       {images.map((src: string, idx: number) => (
         <div
           key={`image-${idx}`}
