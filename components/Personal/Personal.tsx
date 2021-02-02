@@ -25,8 +25,7 @@ interface IPersonal {
 const Personal = ({ startAnimate }: IPersonal) => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const [isInViewport, targetRef] = useIsInViewport({ threshold: 30 });
-  const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
-  const [portraitLoaded, setPortraitLoaded] = useState<boolean>(false);
+  const [allLoaded, setAllLoaded] = useState<boolean>(false);
   let backgroundImg: HTMLImageElement;
   let portraitImg: HTMLImageElement;
 
@@ -46,24 +45,12 @@ const Personal = ({ startAnimate }: IPersonal) => {
    * Therefore we use imagesLoaded func to detect when the background image has loaded.
    */
   useEffect(() => {
-    if (backgroundImg && !backgroundLoaded) {
-      imagesLoaded(backgroundImg, () => {
-        setBackgroundLoaded(true);
+    if (backgroundImg && portraitImg && !allLoaded) {
+      imagesLoaded([backgroundImg, portraitImg], () => {
+        setAllLoaded(true);
       });
     }
-  }, [backgroundImg]);
-
-  /**
-   * In case portraitImg is stored in cache, onLoad might not trigger.
-   * Therefore we use imagesLoaded func to detect when the portrait image has loaded.
-   */
-  useEffect(() => {
-    if (portraitImg && !portraitLoaded) {
-      imagesLoaded(portraitImg, () => {
-        setPortraitLoaded(true);
-      });
-    }
-  }, [portraitImg]);
+  }, [backgroundImg, portraitImg]);
 
   useEffect(() => {
     if (!startAnimate) {
@@ -72,39 +59,16 @@ const Personal = ({ startAnimate }: IPersonal) => {
         opacity: 0,
         x: 1000,
       });
-    } else if (
-      startAnimate &&
-      isInViewport &&
-      backgroundLoaded &&
-      backgroundLoaded
-    ) {
+    } else if (startAnimate && isInViewport && allLoaded) {
       const timeline = gsap.timeline();
-      const START_ID = 'start-personal-animation';
-      timeline
-        .to(
-          '#image-wrapper',
-          {
-            opacity: 1,
-            duration: 1,
-            x: 0,
-            ease: 'Power3.inOut',
-            transformOrigin: '0 50%',
-          },
-          START_ID
-        )
-        .to(
-          textWrapperRef?.current,
-          {
-            opacity: 1,
-            duration: 1,
-            x: 0,
-            ease: 'Power3.inOut',
-            transformOrigin: '0 50%',
-          },
-          START_ID
-        );
+      timeline.to(['#image-wrapper', textWrapperRef?.current], {
+        opacity: 1,
+        duration: 1,
+        x: 0,
+        ease: 'Power3.inOut',
+      });
     }
-  }, [startAnimate, isInViewport, backgroundLoaded, portraitLoaded]);
+  }, [startAnimate, isInViewport, allLoaded]);
 
   return (
     <>
