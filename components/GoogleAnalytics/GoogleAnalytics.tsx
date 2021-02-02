@@ -12,22 +12,21 @@ gtag("js", new Date());
 gtag("config", "${GA_ID}");`;
 
   return (
-    <>
-      {NODE_ENV === 'production' && typeof window !== 'undefined' ? (
-        <Head>
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          ></script>
-          <script
-            async
-            dangerouslySetInnerHTML={{
-              __html: htmlString,
-            }}
-          />
-        </Head>
-      ) : null}
-    </>
+    NODE_ENV === 'production' &&
+    typeof window !== 'undefined' && (
+      <Head>
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        ></script>
+        <script
+          async
+          dangerouslySetInnerHTML={{
+            __html: htmlString,
+          }}
+        />
+      </Head>
+    )
   );
 };
 

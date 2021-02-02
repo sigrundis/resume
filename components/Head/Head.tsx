@@ -1,5 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
+import GoogleTagManager from '../GoogleTagManager';
+import GoogleAnalytics from '../GoogleAnalytics';
 
 const pageTitle = 'Sigrún Dís Hauksdóttir - Software Developer';
 const description = 'Online Resume';
@@ -20,12 +22,6 @@ const WebsiteHead = () => (
     <meta property="og:type" content="website" />
     <meta property="og:description" content={description} key="ogdesc" />
     <title>{pageTitle}</title>
-    <link
-      rel="preload"
-      href="/fonts/montserrat.woff2"
-      as="font"
-      type="font/woff2"
-    />
   </Head>
 );
 

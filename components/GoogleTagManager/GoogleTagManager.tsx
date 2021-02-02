@@ -12,19 +12,16 @@ const GTM = () => {
 })(window,document,'script','dataLayer','${GTM_ID}');`;
 
   return (
-    <>
-      {NODE_ENV === 'production' && typeof window !== 'undefined' && (
-        <>
-          <Head>
-            <script
-              dangerouslySetInnerHTML={{
-                __html: scriptString,
-              }}
-            />
-          </Head>
-        </>
-      )}
-    </>
+    NODE_ENV === 'production' &&
+    typeof window !== 'undefined' && (
+      <Head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: scriptString,
+          }}
+        />
+      </Head>
+    )
   );
 };
 

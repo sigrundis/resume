@@ -51,6 +51,9 @@
     align-items: center;
     background: rgba(0, 0, 0, 0.75);
   }
+  .mobileUl {
+    display: none;
+  }
   .ul {
     display: flex;
     justify-content: flex-end;

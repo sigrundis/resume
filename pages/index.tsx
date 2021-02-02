@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { NextPage } from 'next';
 import { useSelector } from 'react-redux';
 import { IState } from '../store/store';
+import Fonts from '../hooks/Fonts';
 import { imageBanner1 } from '../data/imageBanners';
 import Head from '../components/Head';
 import GoogleAnalytics from '../components/GoogleAnalytics';
@@ -22,8 +23,12 @@ let Index: NextPage = (store) => {
   const state = useSelector<IState, IState>((state: IState) => state);
   const { selectedNav } = state;
 
+  useEffect(() => {
+    Fonts();
+  }, []);
+
   return (
-    <Fragment>
+    <>
       <Head />
       <GoogleAnalytics />
       <GoogleTagManager />
@@ -38,7 +43,7 @@ let Index: NextPage = (store) => {
       <Education />
       <WorkExperience />
       <Footer />
-    </Fragment>
+    </>
   );
 };
 
