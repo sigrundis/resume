@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
 import useIsInViewport from 'use-is-in-viewport';
 import gsap from 'gsap';
@@ -11,6 +11,7 @@ const {
   imageWrapper,
   portraitWrapper,
   portrait,
+  backgroundWrapper,
   background,
   paragraph,
   h3,
@@ -23,32 +24,104 @@ interface IPersonal {
 const Personal = ({ startAnimate }: IPersonal) => {
   const textWrapperRef = useRef<HTMLDivElement>(null);
   const [isInViewport, targetRef] = useIsInViewport({ threshold: 30 });
+  const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
+  const [portraitLoaded, setPortraitLoaded] = useState<boolean>(false);
+  let backgroundImg: HTMLImageElement;
+  let portraitImg: HTMLImageElement;
 
   useEffect(() => {
-    const textItems = textWrapperRef?.current?.childNodes;
-
-    if (!startAnimate) {
-      gsap.set(textItems, { opacity: 0, y: 50 });
-    } else if (startAnimate && isInViewport) {
-      const timeline = gsap.timeline();
-      timeline.to(textItems, {
-        opacity: 1,
-        stagger: 0.4,
-        duration: 1,
-        y: 0,
-        ease: 'Power3.inOut',
-        transformOrigin: '0 50%',
-      });
+    if (typeof window !== 'undefined') {
+      backgroundImg = document.getElementById(
+        'personal-background-image'
+      ) as HTMLImageElement;
+      portraitImg = document.getElementById(
+        'personal-portrait-image'
+      ) as HTMLImageElement;
     }
-  }, [startAnimate, isInViewport]);
+  }, []);
+
+  /**
+   * In case backgroundImg is stored in cache, onLoad might not trigger.
+   * Then we set the state backgroundLoaded to true when .complete is true.
+   */
+  useEffect(() => {
+    if (backgroundImg) {
+      setBackgroundLoaded(backgroundImg.complete);
+    }
+  }, [backgroundImg]);
+
+  /**
+   * In case portraitImg is stored in cache, onLoad might not trigger.
+   * Then we set the state portraitLoaded to true when .complete is true.
+   */
+  useEffect(() => {
+    if (portraitImg) {
+      setPortraitLoaded(portraitImg.complete);
+    }
+  }, [portraitImg]);
+
+  useEffect(() => {
+    if (!startAnimate) {
+      gsap.set(textWrapperRef?.current, { opacity: 0, x: -1000 });
+      gsap.set('#image-wrapper', {
+        opacity: 0,
+        x: 1000,
+      });
+    } else if (
+      startAnimate &&
+      isInViewport &&
+      backgroundLoaded &&
+      backgroundLoaded
+    ) {
+      const timeline = gsap.timeline();
+      const START_ID = 'start-personal-animation';
+      timeline
+        .to(
+          '#image-wrapper',
+          {
+            opacity: 1,
+            duration: 1,
+            x: 0,
+            ease: 'Power3.inOut',
+            transformOrigin: '0 50%',
+          },
+          START_ID
+        )
+        .to(
+          textWrapperRef?.current,
+          {
+            opacity: 1,
+            duration: 1,
+            x: 0,
+            ease: 'Power3.inOut',
+            transformOrigin: '0 50%',
+          },
+          START_ID
+        );
+    }
+  }, [startAnimate, isInViewport, backgroundLoaded, portraitLoaded]);
 
   return (
     <>
       <div ref={targetRef} className={container}>
-        <div className={imageWrapper}>
-          <div className={background}></div>
+        <div id="image-wrapper" className={imageWrapper}>
+          <div className={backgroundWrapper}>
+            <Image
+              id="personal-background-image"
+              className={background}
+              src="/img/white-bridge.jpg"
+              layout="fill"
+              onLoad={() => setBackgroundLoaded(true)}
+            />
+          </div>
           <div className={portraitWrapper}>
-            <Image className={portrait} src="/img/blue.jpg" layout="fill" />
+            <Image
+              id="personal-portrait-image"
+              className={portrait}
+              src="/img/blue.jpg"
+              layout="fill"
+              onLoad={() => setPortraitLoaded(true)}
+            />
           </div>
         </div>
         <div ref={textWrapperRef} className={textWrapper}>

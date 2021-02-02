@@ -34,19 +34,42 @@ const {
 const Heading = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLDivElement>(null);
+  let backgroundImg: HTMLImageElement;
+  let portraitImg: HTMLImageElement;
   const [typingAnimation, setTypingAnimation] = useState<boolean>(false);
-  const tinyBackground = '/img/code2_tiny.jpg';
-  const qualityBackground = '/img/code2.jpg';
-  const tinyPortrait = '/img/portrait_tiny.jpg';
-  const qualityPortrait = '/img/portrait.jpg';
-  const { loaded: backgroundLoaded } = useProgressiveImg(
-    tinyBackground,
-    qualityBackground
-  );
-  const { loaded: portraitLoaded } = useProgressiveImg(
-    tinyPortrait,
-    qualityPortrait
-  );
+  const [backgroundLoaded, setBackgroundLoaded] = useState<boolean>(false);
+  const [portraitLoaded, setPortraitLoaded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      backgroundImg = document.getElementById(
+        'heading-background-image'
+      ) as HTMLImageElement;
+      portraitImg = document.getElementById(
+        'heading-portrait-image'
+      ) as HTMLImageElement;
+    }
+  }, []);
+
+  /**
+   * In case backgroundImg is stored in cache, onLoad might not trigger.
+   * Then we set the state backgroundLoaded to true when .complete is true.
+   */
+  useEffect(() => {
+    if (backgroundImg) {
+      setBackgroundLoaded(backgroundImg.complete);
+    }
+  }, [backgroundImg]);
+
+  /**
+   * In case portraitImg is stored in cache, onLoad might not trigger.
+   * Then we set the state portraitLoaded to true when .complete is true.
+   */
+  useEffect(() => {
+    if (portraitImg) {
+      setPortraitLoaded(portraitImg.complete);
+    }
+  }, [portraitImg]);
 
   useEffect(() => {
     if (contentRef?.current && imgRef?.current) {
@@ -61,6 +84,7 @@ const Heading = () => {
           },
         });
         const animateFromSide = {
+          delay: 0.6,
           opacity: 1,
           x: 0,
           duration: 1,
@@ -126,15 +150,16 @@ const Heading = () => {
   return (
     <div className={container}>
       <div className={alternativeBackgroundImage} />
-      {backgroundLoaded && (
-        <Image
-          src={qualityBackground}
-          className={classNames(backgroundImage, {
-            [backgroundImageLoaded]: backgroundLoaded,
-          })}
-          layout="fill"
-        />
-      )}
+      <Image
+        id="heading-background-image"
+        onLoad={() => setBackgroundLoaded(true)}
+        src={'/img/code2.jpg'}
+        className={classNames(backgroundImage, {
+          [backgroundImageLoaded]: backgroundLoaded,
+        })}
+        layout="fill"
+        alt="Background Image"
+      />
       <div className={overlay} />
       <div className={flexWrapper}>
         <div
@@ -157,7 +182,14 @@ const Heading = () => {
         <div ref={imgRef} className={classNames(imageWrapper)}>
           <div className={box}></div>
           <div className={imageInnerWrapper}>
-            <Image src={qualityPortrait} className={image} layout="fill" />
+            <Image
+              id="heading-portrait-image"
+              src={'/img/portrait.jpg'}
+              className={image}
+              layout="fill"
+              onLoad={() => setPortraitLoaded(true)}
+              alt="Portrait Image"
+            />
           </div>
         </div>
         {renderButtons(buttonMobileWrapper, true)}
