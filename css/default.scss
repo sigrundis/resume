@@ -11,7 +11,13 @@ body {
 html {
   scroll-behavior: smooth;
 }
-.montserrat nav {
+// Hide nav list before font is loaded
+nav,
+#mobile-nav-list {
+  opacity: 0;
+}
+.montserrat nav,
+.montserrat #mobile-nav-list {
   opacity: 1;
 }
 body {

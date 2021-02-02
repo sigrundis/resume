@@ -32,7 +32,7 @@ const Nav = ({ selected }: INav) => {
       })}
     >
       <Hamburger isOpen={isMobileNavOpen} onClick={onClickHamburger}>
-        <ul className={mobileUl}>
+        <ul id="mobile-nav-list" className={mobileUl}>
           {navItemsList.map((item: INavItem, idx: number) => (
             <li
               key={`mobile-item-${idx}`}
@@ -48,7 +48,7 @@ const Nav = ({ selected }: INav) => {
         </ul>
       </Hamburger>
 
-      <ul className={ul}>
+      <ul id="desktop-nav-list" className={ul}>
         {navItemsList.map((item: INavItem, idx: number) => (
           <li
             key={`desktop-item-${idx}`}
