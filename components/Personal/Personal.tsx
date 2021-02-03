@@ -96,9 +96,10 @@ const Personal = ({ startAnimate }: IPersonal) => {
           <Separator />
           <div>
             <p className={paragraph}>
-              My name is Sigrún Dís Hauksdóttir and I am from Reykjavík, the
-              capital of Iceland. Currently I am living in Denmark studying for
-              my master’s degree at the University of Southern Denmark.
+              My name is Sigrún Dís Hauksdóttir and I am 25 years old software
+              developer from Reykjavík, the capital of Iceland. Currently I am
+              living in Denmark studying for my master’s degree at the
+              University of Southern Denmark.
             </p>
             <p className={paragraph}>
               I have really diverse interests. From sitting in a relaxed
