@@ -3,6 +3,7 @@ import Image from 'next/image';
 import useIsInViewport from 'use-is-in-viewport';
 import imagesLoaded from 'imagesloaded';
 import gsap from 'gsap';
+import { isBrowser } from '../../utils/helpers';
 import Separator from '../Separator';
 import styles from './Personal.module.scss';
 
@@ -30,7 +31,7 @@ const Personal = ({ startAnimate }: IPersonal) => {
   let portraitImg: HTMLImageElement;
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (isBrowser) {
       backgroundImg = document.getElementById(
         'personal-background-image'
       ) as HTMLImageElement;

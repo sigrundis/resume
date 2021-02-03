@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { isBrowser } from '../../utils/helpers';
 import Head from 'next/head';
 
 const NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV;
@@ -10,10 +11,19 @@ const GTM = () => {
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','${GTM_ID}');`;
+  const isProduction: boolean = NODE_ENV === 'production';
+
+  useEffect(() => {
+    if (isBrowser && isProduction) {
+      const noScript = document.createElement('noScript');
+      noScript.innerHTML = `<iframe src="https://www.googletagmanager.com/ns.html?id=${GTM_ID}" height="0" width="0" style="display:none;visibility:hidden;"></iframe>`;
+      document?.body?.insertBefore(noScript, document?.body?.firstChild);
+    }
+  }, []);
 
   return (
-    NODE_ENV === 'production' &&
-    typeof window !== 'undefined' && (
+    isProduction &&
+    isBrowser && (
       <Head>
         <script
           dangerouslySetInnerHTML={{

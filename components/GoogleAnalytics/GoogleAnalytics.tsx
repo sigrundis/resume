@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { isBrowser } from '../../utils/helpers';
 
 const NODE_ENV = process.env.NEXT_PUBLIC_NODE_ENV;
 const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
@@ -13,7 +14,7 @@ gtag("config", "${GA_ID}");`;
 
   return (
     NODE_ENV === 'production' &&
-    typeof window !== 'undefined' && (
+    isBrowser && (
       <Head>
         <script
           async

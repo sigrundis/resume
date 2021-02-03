@@ -3,8 +3,8 @@ import Image from 'next/image';
 import classNames from 'classnames';
 import gsap from 'gsap';
 import imagesLoaded from 'imagesloaded';
+import { isBrowser } from '../../utils/helpers';
 import { navItems } from '../../data/nav';
-import useProgressiveImg from '../../hooks/useProgressiveImg';
 import Button from '../Button';
 import styles from './Heading.module.scss';
 import Separator from '../Separator';
@@ -46,7 +46,7 @@ const Heading = () => {
    * Therefore we use id to generate the image elements.
    */
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (isBrowser) {
       backgroundImg = document.getElementById(
         'heading-background-image'
       ) as HTMLImageElement;
@@ -129,7 +129,7 @@ const Heading = () => {
   }, [backgroundLoaded, portraitLoaded]);
 
   const scrollToElementWithId = (id: string) => {
-    if (typeof window !== 'undefined') {
+    if (isBrowser) {
       var el = document?.getElementById(id);
       el.scrollIntoView({ behavior: 'smooth' });
     }

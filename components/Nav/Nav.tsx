@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classNames from 'classnames';
 import INavItem from '../../typescript/Interfaces/INavItem';
+import { isBrowser } from '../../utils/helpers';
 import { navItemsList } from '../../data/nav';
 import Hamburger from '../Hamburger';
 import styles from './Nav.module.scss';
@@ -15,7 +16,7 @@ const Nav = ({ selected }: INav) => {
 
   const scrollToElementWithId = (id: string) => {
     setIsMobileNavOpen(false);
-    if (typeof window !== 'undefined') {
+    if (isBrowser) {
       var el = document?.getElementById(id);
       el.scrollIntoView({ behavior: 'smooth' });
     }
