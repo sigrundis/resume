@@ -34,7 +34,6 @@ const mapIdToIcon = (id: string) => {
 const Expertise = () => {
   const expertiseRef = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
-  const [animation, setAnimation] = useState<boolean>(false);
   const [isInViewport, targetRef] = useIsInViewport({ threshold: 30 });
 
   useEffect(() => {
@@ -51,7 +50,7 @@ const Expertise = () => {
       { y: 50 },
       {
         opacity: 1,
-        stagger: 0.4,
+        stagger: 0.3,
         duration: 1,
         ease: 'Power3.inOut',
         transformOrigin: '0 50%',
