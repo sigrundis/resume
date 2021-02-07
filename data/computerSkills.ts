@@ -2,15 +2,15 @@ import IComputerSkill from '../typescript/Interfaces/IComputerSkill';
 
 export const programmingLanguages: IComputerSkill[] = [
   {
+    title: 'JavaScript',
+    percentage: 90,
+  },
+  {
     title: 'HTML',
     percentage: 90,
   },
   {
     title: 'CSS, SCSS, LESS, CSS Modules',
-    percentage: 90,
-  },
-  {
-    title: 'JavaScript',
     percentage: 90,
   },
   {

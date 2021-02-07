@@ -16,7 +16,7 @@ export const expertiseList: IExpertiseItem[] = [
     id: 'analytics',
     title: 'Analytics and reporting',
     description:
-      'Make conceus decisions and want to be able to visualize how new features and changes effect the product I am working on.',
+      'Make conscious decisions and want to be able to visualize how new features and changes affect the product I am working on.',
   },
   {
     id: 'management',

@@ -93,11 +93,11 @@ const Personal = ({ startAnimate }: IPersonal) => {
           </div>
         </div>
         <div ref={textWrapperRef} className={textWrapper}>
-          <h3 className={h3}>On the personal notes</h3>
+          <h3 className={h3}>On the personal level</h3>
           <Separator />
           <div>
             <p className={paragraph}>
-              My name is Sigrún Dís Hauksdóttir and I am 25 years old software
+              My name is Sigrún Dís Hauksdóttir and I am 25 year old software
               developer from Reykjavík, the capital of Iceland. Currently I am
               living in Denmark studying for my master’s degree at the
               University of Southern Denmark.
@@ -105,9 +105,9 @@ const Personal = ({ startAnimate }: IPersonal) => {
             <p className={paragraph}>
               I have really diverse interests. From sitting in a relaxed
               environment doing something creative to attending outdoor
-              activities which increases the adrenaline. I am adventurous person
-              who loves to travel, practise sports and one of the most fun
-              things I do is snowboarding.
+              activities which increases the adrenaline. I am an adventurous
+              person who loves to travel, practise sports and one of the most
+              fun things I do is snowboarding.
             </p>
             <p className={paragraph}>
               As an extrovert person I enjoy social activities and working in a

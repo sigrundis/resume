@@ -14,7 +14,7 @@ const About = () => {
   const [animate, setAnimate] = useState<boolean>(false);
   const subtitle =
     'Hi there! Glad that you are showing interest to get to know me better.' +
-    ' Hopefully it will lead to exiting opportunities that we can work on together.';
+    ' Hopefully it will lead to exciting opportunities that we can work on together.';
 
   useEffect(() => {
     if (isInViewport) {
