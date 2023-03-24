@@ -4,6 +4,8 @@ export const educationList = [
     subject: 'MSc program in Engineering - Product Development and Innovation',
     school: 'SDU - University of Southern Denmark',
     courses: [
+      'MSc thesis (Empowering data-based strategic decisions for Travel Connect)',
+      'In-company Project (UX optimization project for Umbraco)',
       'New Business Establishment',
       'Project Portfolio Management',
       'Consumer Product Testing and Optimization',
@@ -14,6 +16,9 @@ export const educationList = [
       'Modularization and Platform Design',
       'Sustainable Materials in Product Creation',
       'Theories and Methods of Technological Change',
+      'Management of Technology',
+      'Health Tech Innovator',
+      'Prototyping as a Tool in the Entrepreneurial Process',
     ],
   },
   {

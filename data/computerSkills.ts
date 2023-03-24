@@ -26,11 +26,15 @@ export const programmingLanguages: IComputerSkill[] = [
     percentage: 60,
   },
   {
-    title: 'C/C++',
+    title: 'SQL/PostgreSQL',
+    percentage: 60,
+  },
+  {
+    title: 'C# with .Net',
     percentage: 50,
   },
   {
-    title: 'SQL/PostgreSQL',
+    title: 'C/C++',
     percentage: 50,
   },
 ];
@@ -45,11 +49,15 @@ export const frameworks: IComputerSkill[] = [
     percentage: 80,
   },
   {
-    title: 'React Native',
+    title: 'CMS such as Umbraco, Contentful and Wordpress',
+    percentage: 80,
+  },
+  {
+    title: 'SEO',
     percentage: 75,
   },
   {
-    title: 'Express',
+    title: 'Pagespeed Optimization',
     percentage: 75,
   },
   {
@@ -57,15 +65,15 @@ export const frameworks: IComputerSkill[] = [
     percentage: 75,
   },
   {
-    title: 'Bugsnag',
+    title: 'Figma',
     percentage: 70,
   },
   {
-    title: 'Contentful',
+    title: 'React Native',
     percentage: 70,
   },
   {
-    title: 'Cypress',
+    title: 'Vue.js',
     percentage: 60,
   },
 ];

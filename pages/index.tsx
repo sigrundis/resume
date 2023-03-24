@@ -40,8 +40,8 @@ let Index: NextPage = (store) => {
       <ImageBanner images={imageBanner1} />
       <Skills />
       <Resume />
-      <Education />
       <WorkExperience />
+      <Education />
       <Footer />
     </>
   );
