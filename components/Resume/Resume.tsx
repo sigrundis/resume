@@ -10,7 +10,7 @@ const Resume = () => {
     <div id={navItems.RESUME} className={container}>
       <Image className={image} src="/img/speak.jpeg" layout="fill" />
       <div className={overlay} />
-      <a className={link} href="/documents/cv.pdf" target="_blank">
+      <a className={link} href="/documents/cv-2023.pdf" target="_blank">
         Download CV
       </a>
     </div>

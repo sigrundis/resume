@@ -1,6 +1,15 @@
 export const workExperienceList = [
   {
-    year: '2017 - Present',
+    year: '2021 - 2023',
+    title: 'Web Developer',
+    company: 'Umbraco',
+    descriptionList: [
+      'Besides my studies, I worked as the leading front-end developer and a UX manager of the marketing team.',
+      'Working closely with backend developers, SEO managers, marketers and content creators. ',
+    ],
+  },
+  {
+    year: '2017 - 2021',
     title: 'Software Developer',
     company: 'Dohop',
     descriptionList: [
