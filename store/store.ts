@@ -1,5 +1,6 @@
-import { createStore, AnyAction } from 'redux';
-import { MakeStore, createWrapper, Context, HYDRATE } from 'next-redux-wrapper';
+import { AnyAction } from 'redux';
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import { createWrapper, HYDRATE } from 'next-redux-wrapper';
 
 export const SET_SELECTED_NAV = 'SET_SELECTED_NAV';
 
@@ -21,6 +22,18 @@ const reducer = (state: IState = defaultState, action: AnyAction) => {
   }
 };
 
-const makeStore: MakeStore<IState> = (context: Context) => createStore(reducer);
+export type AppStore = ReturnType<typeof makeStore>;
+export type AppState = ReturnType<AppStore['getState']>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  AppState,
+  unknown,
+  Action
+>;
 
-export const wrapper = createWrapper<IState>(makeStore, { debug: true });
+const makeStore = () =>
+  configureStore({
+    reducer,
+  });
+
+export const wrapper = createWrapper(makeStore, { debug: true });

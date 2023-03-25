@@ -8,7 +8,7 @@ const { container, image, overlay, link } = styles;
 const Resume = () => {
   return (
     <div id={navItems.RESUME} className={container}>
-      <Image className={image} src="/img/speak.jpeg" layout="fill" />
+      <Image className={image} src="/img/speak.jpeg" fill alt="image-speak" />
       <div className={overlay} />
       <a className={link} href="/documents/cv-2023.pdf" target="_blank">
         Download CV
