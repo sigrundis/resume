@@ -19,9 +19,8 @@ const ImageBanner = ({ images, tall }: IImageBanner) => {
 
   const imageWrappers: NodeListOf<ChildNode> =
     containerRef?.current?.childNodes;
-  const imgList: HTMLCollectionOf<HTMLImageElement> = containerRef?.current?.getElementsByTagName(
-    'img'
-  );
+  const imgList: HTMLCollectionOf<HTMLImageElement> =
+    containerRef?.current?.getElementsByTagName('img');
 
   useEffect(() => {
     if (allImagesLoaded) {
@@ -58,7 +57,7 @@ const ImageBanner = ({ images, tall }: IImageBanner) => {
             [oneImage]: images.length === 1,
           })}
         >
-          <Image className={image} src={src} layout="fill" />
+          <Image className={image} src={src} fill alt={`image-banner-${idx}`} />
         </div>
       ))}
     </div>

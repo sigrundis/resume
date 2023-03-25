@@ -80,7 +80,8 @@ const Personal = ({ startAnimate }: IPersonal) => {
               id="personal-background-image"
               className={background}
               src="/img/white-bridge.jpg"
-              layout="fill"
+              fill
+              alt="personal-background-image"
             />
           </div>
           <div className={portraitWrapper}>
@@ -88,7 +89,8 @@ const Personal = ({ startAnimate }: IPersonal) => {
               id="personal-portrait-image"
               className={portrait}
               src="/img/blue.jpg"
-              layout="fill"
+              fill
+              alt="personal-portrait-image"
             />
           </div>
         </div>
@@ -97,7 +99,7 @@ const Personal = ({ startAnimate }: IPersonal) => {
           <Separator />
           <div>
             <p className={paragraph}>
-              My name is Sigrún Dís Hauksdóttir and I am 25 year old software
+              My name is Sigrún Dís Hauksdóttir and I am 27 year old software
               developer from Reykjavík, the capital of Iceland. Currently I am
               living in Denmark studying for my master’s degree at the
               University of Southern Denmark.

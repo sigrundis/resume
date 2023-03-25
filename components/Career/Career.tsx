@@ -48,9 +48,8 @@ const Career = () => {
   const randomRotationAngle = 16 * Math.random() - 8;
   const imageWrappers: NodeListOf<ChildNode> =
     passionImgRef?.current?.childNodes;
-  const imgList: HTMLCollectionOf<HTMLImageElement> = passionImgRef?.current?.getElementsByTagName(
-    'img'
-  );
+  const imgList: HTMLCollectionOf<HTMLImageElement> =
+    passionImgRef?.current?.getElementsByTagName('img');
 
   useEffect(() => {
     if (imgList && !allImagesLoaded) {
@@ -162,7 +161,8 @@ const Career = () => {
               <Image
                 className={image}
                 src={passionImage.highQualitySrc}
-                layout="fill"
+                fill
+                alt={`passion-image-${idx}`}
               />
             </div>
           );

@@ -20,8 +20,9 @@
   flex-shrink: 0;
   width: 35px;
   height: 35px;
-  fill: $sky-darker;
+  fill: $night !important;
   path {
     stroke: 5px;
+    fill: $night !important;
   }
 }
